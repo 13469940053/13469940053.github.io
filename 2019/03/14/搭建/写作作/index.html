@@ -381,16 +381,16 @@ $ npm i">
 </ul>
 <p>$ npm i -S hexo-prism-pluginnpm i -S hexo-prism-plugin</p>
 <p>首先，你应该编辑你的_config.yml通过添加以下配置。</p>
-<pre class="line-numbers language-shell"><code class="language-shell">prism_plugin:
+<pre class=" language-shell"><code class="language-shell">prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'default'
   line_number: false    # default false
   custom_css: 'path/to/your/custom.css'     # optional
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>在那之后，检查highlight选择_config.yml。确保默认代码高亮插件被禁用。</p>
-<pre class="line-numbers language-shell"><code class="language-shell">highlight:
+<pre class=" language-shell"><code class="language-shell">highlight:
   enable: false
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <p>最后，通过运行以下命令来清理和重新生成项目：</p>
 <pre><code>&gt; hexo clean
 &gt; hexo generate

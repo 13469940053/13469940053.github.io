@@ -1,0 +1,1643 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Objective-C：Category, 无浪网、张成的博客、无风不起浪网、无浪博客">
+    <meta name="description" content="
+本文转载自美图点评技术团队的：深入理解Objective-C：Category，略有修改。
+
+前言无论一个类设计的多么完美，在未来的需求演进中，都有可能会碰到一些无法预测的情况。那怎么扩展已有的类呢？一般而言，继承和组合是不错的选择。但是">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Objective-C：Category | 张成的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+</head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">张成的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/webcode" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-md"></i>
+            
+            <span>前端</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">张成的博客</div>
+        <div class="logo-desc">
+            
+            无浪网、张成的博客、无浪博客、无风不起浪网由张成初期学习前端知识所做，仅供学习和资料储存使用！张成留言
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/webcode" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-md"></i>
+                
+                前端
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Objective-C：Category
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/iOS/" target="_blank">
+                                <span class="chip bg-color">iOS</span>
+                            </a>
+                        
+                            <a href="/tags/Category/" target="_blank">
+                                <span class="chip bg-color">Category</span>
+                            </a>
+                        
+                            <a href="/tags/ObjC/" target="_blank">
+                                <span class="chip bg-color">ObjC</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2016-12-21
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>本文转载自美图点评技术团队的：<a href="http://tech.meituan.com/DiveIntoCategory.html" target="_blank" rel="noopener">深入理解Objective-C：Category</a>，略有修改。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>无论一个类设计的多么完美，在未来的需求演进中，都有可能会碰到一些无法预测的情况。那怎么扩展已有的类呢？一般而言，继承和组合是不错的选择。但是在Objective-C 2.0中，又提供了category这个语言特性，可以动态地为已有类添加新行为。如今category已经遍布于Objective-C代码的各个角落，从Apple官方的framework到各个开源框架，从功能繁复的大型APP到简单的应用，catagory无处不在。本文对category做了比较全面的整理，希望对读者有所裨益。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文系学习Objective-C的runtime源码时整理所成，主要剖析了category在runtime层的实现原理以及和category相关的方方面面，内容包括：</p>
+<ul>
+<li>初入宝地 category简介</li>
+<li>连类比事 category和extension</li>
+<li>挑灯细览 category真面目</li>
+<li>追本溯源 category如何加载</li>
+<li>旁枝末叶 category和+load方法</li>
+<li>触类旁通 category和方法覆盖</li>
+<li>更上一层 category和关联对象</li>
+</ul>
+<h2 id="初入宝地-Category简介"><a href="#初入宝地-Category简介" class="headerlink" title="初入宝地 Category简介"></a>初入宝地 Category简介</h2><p>Category是Objective-C 2.0之后添加的语言特性，Category的主要作用是为已经存在的类添加方法。除此之外，apple还推荐了Category的另外两个使用场景,详见<a href="https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Category.html" target="_blank" rel="noopener">Apple Category文档</a>。</p>
+<ul>
+<li>可以把类的实现分开在几个不同的文件里面。这样做有几个显而易见的好处，<ul>
+<li>可以减少单个文件的体积 b)可以把不同的功能组织到不同的category里 </li>
+<li>可以由多个开发者共同完成一个类 </li>
+<li>可以按需加载想要的 Category 等等。</li>
+</ul>
+</li>
+<li>声明私有方法</li>
+</ul>
+<p>不过除了apple推荐的使用场景，广大开发者脑洞大开，还衍生出了category的其他几个使用场景：</p>
+<ul>
+<li>模拟多继承</li>
+<li>把framework的私有方法公开</li>
+</ul>
+<p>Objective-C的这个语言特性对于纯动态语言来说可能不算什么，比如javascript，你可以随时为一个“类”或者对象添加任意方法和实例变量。但是对于不是那么“动态”的语言而言，这确实是一个了不起的特性。</p>
+<h2 id="连类比事-Category和Extension"><a href="#连类比事-Category和Extension" class="headerlink" title="连类比事 Category和Extension"></a>连类比事 Category和Extension</h2><p>extension看起来很像一个匿名的category，但是extension和有名字的category几乎完全是两个东西。 extension在编译期决议，它就是类的一部分，在编译期和头文件里的@interface以及实现文件里的@implement一起形成一个完整的类，它伴随类的产生而产生，亦随之一起消亡。extension一般用来隐藏类的私有信息，你必须有一个类的源码才能为一个类添加extension，所以你无法为系统的类比如NSString添加extension。(详见<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html" target="_blank" rel="noopener">Apple文档</a>)</p>
+<h2 id="挑灯细览-category真面目"><a href="#挑灯细览-category真面目" class="headerlink" title="挑灯细览 category真面目"></a>挑灯细览 category真面目</h2><p>我们知道，所有的OC类和对象，在runtime层都是用struct表示的，category也不例外，在runtime层，category用结构体category_t（在objc-runtime-new.h中可以找到此定义），它包含了</p>
+<ol>
+<li>类的名字（name）</li>
+</ol>
+<ul>
+<li>类（cls）</li>
+<li>category中所有给类添加的实例方法的列表（instanceMethods）</li>
+<li>category中所有添加的类方法的列表（classMethods）</li>
+<li>category实现的所有协议的列表（protocols）</li>
+<li>category中添加的所有属性（instanceProperties）</li>
+</ul>
+<pre><code>typedef struct category_t {
+    const char *name;
+    classref_t cls;
+    struct method_list_t *instanceMethods;
+    struct method_list_t *classMethods;
+    struct protocol_list_t *protocols;
+    struct property_list_t *instanceProperties;
+} category_t;
+</code></pre><p>从category的定义也可以看出category的可为（可以添加实例方法，类方法，甚至可以实现协议，添加属性）和不可为（无法添加实例变量）。<br>ok，我们先去写一个category看一下category到底为何物：</p>
+<p>MyClass.h：</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface MyClass : NSObject
+
+- (void)printName;
+
+@end
+
+@interface MyClass(MyAddition)
+
+@property(nonatomic, copy) NSString *name;
+
+- (void)printName;
+
+@end
+</code></pre><p>MyClass.m：</p>
+<pre><code>#import &quot;MyClass.h&quot;
+
+@implementation MyClass
+
+- (void)printName
+{
+    NSLog(@&quot;%@&quot;,@&quot;MyClass&quot;);
+}
+
+@end
+
+@implementation MyClass(MyAddition)
+
+- (void)printName
+{
+    NSLog(@&quot;%@&quot;,@&quot;MyAddition&quot;);
+}
+
+@end
+</code></pre><p>我们使用clang的命令去看看category到底会变成什么：</p>
+<pre><code>clang -rewrite-objc MyClass.m
+</code></pre><p>好吧，我们得到了一个3M大小，10w多行的.cpp文件（这绝对是Apple值得吐槽的一点），我们忽略掉所有和我们无关的东西，在文件的最后，我们找到了如下代码片段：</p>
+<pre><code>static struct /*_method_list_t*/ {
+unsigned int entsize;  // sizeof(struct _objc_method)
+unsigned int method_count;
+struct _objc_method method_list[1];
+} _OBJC_$_CATEGORY_INSTANCE_METHODS_MyClass_$_MyAddition __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+sizeof(_objc_method),
+1,
+{{(struct objc_selector *)"printName", "v16@0:8", (void *)_I_MyClass_MyAddition_printName}}
+};
+
+static struct /*_prop_list_t*/ {
+unsigned int entsize;  // sizeof(struct _prop_t)
+unsigned int count_of_properties;
+struct _prop_t prop_list[1];
+} _OBJC_$_PROP_LIST_MyClass_$_MyAddition __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) = {
+sizeof(_prop_t),
+1,
+{{"name","T@\"NSString\",C,N"}}
+};
+
+extern &quot;C&quot; __declspec(dllexport) struct _class_t OBJC_CLASS_$_MyClass;
+
+static struct _category_t _OBJC_$_CATEGORY_MyClass_$_MyAddition __attribute__ ((used, section (&quot;__DATA,__objc_const&quot;))) =
+{
+&quot;MyClass&quot;,
+0, // &amp;OBJC_CLASS_$_MyClass,
+(const struct _method_list_t *)&amp;_OBJC_$_CATEGORY_INSTANCE_METHODS_MyClass_$_MyAddition,
+0,
+0,
+(const struct _prop_list_t *)&amp;_OBJC_$_PROP_LIST_MyClass_$_MyAddition,
+};
+static void OBJC_CATEGORY_SETUP_$_MyClass_$_MyAddition(void ) {
+_OBJC_$_CATEGORY_MyClass_$_MyAddition.cls = &amp;OBJC_CLASS_$_MyClass;
+}
+#pragma section(&quot;.objc_inithooks$B&quot;, long, read, write)
+__declspec(allocate(&quot;.objc_inithooks$B&quot;)) static void *OBJC_CATEGORY_SETUP[] = {
+(void *)&amp;OBJC_CATEGORY_SETUP_$_MyClass_$_MyAddition,
+};
+static struct _class_t *L_OBJC_LABEL_CLASS_$ [1] __attribute__((used, section (&quot;__DATA, __objc_classlist,regular,no_dead_strip&quot;)))= {
+&amp;OBJC_CLASS_$_MyClass,
+};
+static struct _class_t *_OBJC_LABEL_NONLAZY_CLASS_$[] = {
+&amp;OBJC_CLASS_$_MyClass,
+};
+static struct _category_t *L_OBJC_LABEL_CATEGORY_$ [1] __attribute__((used, section (&quot;__DATA, __objc_catlist,regular,no_dead_strip&quot;)))= {
+&amp;_OBJC_$_CATEGORY_MyClass_$_MyAddition,
+};
+</code></pre><p>我们可以看到，</p>
+<ol>
+<li>首先编译器生成了实例方法列表OBJC$_CATEGORY_INSTANCE_METHODSMyClass$_MyAddition和属性列表OBJC$_PROP_LISTMyClass$_MyAddition，两者的命名都遵循了公共前缀+类名+category名字的命名方式，而且实例方法列表里面填充的正是我们在MyAddition这个category里面写的方法printName，而属性列表里面填充的也正是我们在MyAddition里添加的name属性。还有一个需要注意到的事实就是category的名字用来给各种列表以及后面的category结构体本身命名，而且有static来修饰，所以在同一个编译单元里我们的category名不能重复，否则会出现编译错误。</li>
+</ol>
+<ul>
+<li>其次，编译器生成了category本身OBJC$_CATEGORYMyClass$_MyAddition，并用前面生成的列表来初始化category本身。</li>
+<li>最后，编译器在DATA段下的objc_catlist section里保存了一个大小为1的category_t的数组L_OBJC_LABELCATEGORY$（当然，如果有多个category，会生成对应长度的数组^_^），用于运行期category的加载。<br>到这里，编译器的工作就接近尾声了，对于category在运行期怎么加载，我们下节揭晓。</li>
+</ul>
+<h2 id="追本溯源-category如何加载"><a href="#追本溯源-category如何加载" class="headerlink" title="追本溯源 category如何加载"></a>追本溯源 category如何加载</h2><p>我们知道，Objective-C的运行是依赖OC的runtime的，而OC的runtime和其他系统库一样，是OS X和iOS通过dyld动态加载的。<br>想了解更多dyld地同学可以移步<a href="https://www.mikeash.com/pyblog/friday-qa-2012-11-09-dyld-dynamic-linking-on-os-x.html" target="_blank" rel="noopener">这里</a>。</p>
+<p>对于OC运行时，入口方法如下（在objc-os.mm文件中）：</p>
+<pre><code>void _objc_init(void)
+{
+    static bool initialized = false;
+    if (initialized) return;
+    initialized = true;
+
+    // fixme defer initialization until an objc-using image is found?
+    environ_init();
+    tls_init();
+    lock_init();
+    exception_init();
+
+    // Register for unmap first, in case some +load unmaps something
+    _dyld_register_func_for_remove_image(&amp;unmap_image);
+    dyld_register_image_state_change_handler(dyld_image_state_bound,
+                                             1/*batch*/, &amp;map_images);
+    dyld_register_image_state_change_handler(dyld_image_state_dependents_initialized, 0/*not batch*/, &amp;load_images);
+}
+</code></pre><p>category被附加到类上面是在map_images的时候发生的，在new-ABI的标准下，_objc_init里面的调用的map_images最终会调用objc-runtime-new.mm里面的_read_images方法，而在_read_images方法的结尾，有以下的代码片段：</p>
+<pre><code>// Discover categories. 
+    for (EACH_HEADER) {
+        category_t **catlist =
+            _getObjc2CategoryList(hi, &amp;count);
+        for (i = 0; i &lt; count; i++) {
+            category_t *cat = catlist[i];
+            class_t *cls = remapClass(cat-&gt;cls);
+
+            if (!cls) {
+                // Category&#39;s target class is missing (probably weak-linked).
+                // Disavow any knowledge of this category.
+                catlist[i] = NULL;
+                if (PrintConnecting) {
+                    _objc_inform(&quot;CLASS: IGNORING category \?\?\?(%s) %p with &quot;
+                                 &quot;missing weak-linked target class&quot;,
+                                 cat-&gt;name, cat);
+                }
+                continue;
+            }
+
+            // Process this category. 
+            // First, register the category with its target class. 
+            // Then, rebuild the class&#39;s method lists (etc) if 
+            // the class is realized. 
+            BOOL classExists = NO;
+            if (cat-&gt;instanceMethods ||  cat-&gt;protocols 
+                ||  cat-&gt;instanceProperties)
+            {
+                addUnattachedCategoryForClass(cat, cls, hi);
+                if (isRealized(cls)) {
+                    remethodizeClass(cls);
+                    classExists = YES;
+                }
+                if (PrintConnecting) {
+                    _objc_inform(&quot;CLASS: found category -%s(%s) %s&quot;,
+                                 getName(cls), cat-&gt;name,
+                                 classExists ? &quot;on existing class&quot; : &quot;&quot;);
+                }
+            }
+
+            if (cat-&gt;classMethods  ||  cat-&gt;protocols 
+                /* ||  cat-&gt;classProperties */)
+            {
+                addUnattachedCategoryForClass(cat, cls-&gt;isa, hi);
+                if (isRealized(cls-&gt;isa)) {
+                    remethodizeClass(cls-&gt;isa);
+                }
+                if (PrintConnecting) {
+                    _objc_inform(&quot;CLASS: found category +%s(%s)&quot;,
+                                 getName(cls), cat-&gt;name);
+                }
+            }
+        }
+    }
+</code></pre><p>首先，我们拿到的catlist就是上节中讲到的编译器为我们准备的category_t数组，关于是如何加载catlist本身的，我们暂且不表，这和category本身的关系也不大，有兴趣的同学可以去研究以下Apple的二进制格式和load机制。</p>
+<p>略去PrintConnecting这个用于log的东西，这段代码很容易理解：</p>
+<ol>
+<li>把category的实例方法、协议以及属性添加到类上</li>
+<li>把category的类方法和协议添加到类的metaclass上</li>
+</ol>
+<p>值得注意的是，在代码中有一小段注释 <code>/ || cat-&gt;classProperties /</code>，看来苹果有过给类添加属性的计划啊。<br>ok，我们接着往里看，category的各种列表是怎么最终添加到类上的，就拿实例方法列表来说吧：<br>在上述的代码片段里，addUnattachedCategoryForClass只是把类和category做一个关联映射，而remethodizeClass才是真正去处理添加事宜的功臣。</p>
+<pre><code>static void remethodizeClass(class_t *cls)
+{
+    category_list *cats;
+    BOOL isMeta;
+
+    rwlock_assert_writing(&amp;runtimeLock);
+
+    isMeta = isMetaClass(cls);
+
+    // Re-methodizing: check for more categories
+    if ((cats = unattachedCategoriesForClass(cls))) {
+        chained_property_list *newproperties;
+        const protocol_list_t **newprotos;
+
+        if (PrintConnecting) {
+            _objc_inform(&quot;CLASS: attaching categories to class &#39;%s&#39; %s&quot;,
+                         getName(cls), isMeta ? &quot;(meta)&quot; : &quot;&quot;);
+        }
+
+        // Update methods, properties, protocols
+
+        BOOL vtableAffected = NO;
+        attachCategoryMethods(cls, cats, &amp;vtableAffected);
+
+        newproperties = buildPropertyList(NULL, cats, isMeta);
+        if (newproperties) {
+            newproperties-&gt;next = cls-&gt;data()-&gt;properties;
+            cls-&gt;data()-&gt;properties = newproperties;
+        }
+
+        newprotos = buildProtocolList(cats, NULL, cls-&gt;data()-&gt;protocols);
+        if (cls-&gt;data()-&gt;protocols  &amp;&amp;  cls-&gt;data()-&gt;protocols != newprotos) {
+            _free_internal(cls-&gt;data()-&gt;protocols);
+        }
+        cls-&gt;data()-&gt;protocols = newprotos;
+
+        _free_internal(cats);
+
+        // Update method caches and vtables
+        flushCaches(cls);
+        if (vtableAffected) flushVtables(cls);
+    }
+}
+</code></pre><p>而对于添加类的实例方法而言，又会去调用attachCategoryMethods这个方法，我们去看下attachCategoryMethods：</p>
+<pre><code>static void 
+attachCategoryMethods(class_t *cls, category_list *cats,
+                      BOOL *inoutVtablesAffected)
+{
+    if (!cats) return;
+    if (PrintReplacedMethods) printReplacements(cls, cats);
+
+    BOOL isMeta = isMetaClass(cls);
+    method_list_t **mlists = (method_list_t **)
+        _malloc_internal(cats-&gt;count * sizeof(*mlists));
+
+    // Count backwards through cats to get newest categories first
+    int mcount = 0;
+    int i = cats-&gt;count;
+    BOOL fromBundle = NO;
+    while (i--) {
+        method_list_t *mlist = cat_method_list(cats-&gt;list[i].cat, isMeta);
+        if (mlist) {
+            mlists[mcount++] = mlist;
+            fromBundle |= cats-&gt;list[i].fromBundle;
+        }
+    }
+
+    attachMethodLists(cls, mlists, mcount, NO, fromBundle, inoutVtablesAffected);
+
+    _free_internal(mlists);
+
+}
+
+</code></pre><p>attachCategoryMethods做的工作相对比较简单，它只是把所有category的实例方法列表拼成了一个大的实例方法列表，然后转交给了attachMethodLists方法（我发誓，这是本节我们看的最后一段代码了^_^），这个方法有点长，我们只看一小段：</p>
+<pre><code>for (uint32_t m = 0;
+             (scanForCustomRR || scanForCustomAWZ)  &amp;&amp;  m &lt; mlist-&gt;count;
+             m++)
+        {
+            SEL sel = method_list_nth(mlist, m)-&gt;name;
+            if (scanForCustomRR  &amp;&amp;  isRRSelector(sel)) {
+                cls-&gt;setHasCustomRR();
+                scanForCustomRR = false;
+            } else if (scanForCustomAWZ  &amp;&amp;  isAWZSelector(sel)) {
+                cls-&gt;setHasCustomAWZ();
+                scanForCustomAWZ = false;
+            }
+        }
+
+        // Fill method list array
+        newLists[newCount++] = mlist;
+    .
+    .
+    .
+
+    // Copy old methods to the method list array
+    for (i = 0; i &lt; oldCount; i++) {
+        newLists[newCount++] = oldLists[i];
+    }
+</code></pre><p>需要注意的有两点：</p>
+<ol>
+<li>category的方法没有“完全替换掉”原来类已经有的方法，也就是说如果category和原来类都有methodA，那么category附加完成之后，类的方法列表里会有两个methodA</li>
+<li>category的方法被放到了新方法列表的前面，而原来类的方法被放到了新方法列表的后面，这也就是我们平常所说的category的方法会“覆盖”掉原来类的同名方法，这是因为运行时在查找方法的时候是顺着方法列表的顺序查找的，它只要一找到对应名字的方法，就会罢休^_^，殊不知后面可能还有一样名字的方法。</li>
+</ol>
+<h2 id="旁枝末叶-category-和-load-方法"><a href="#旁枝末叶-category-和-load-方法" class="headerlink" title="旁枝末叶 category 和 +load 方法"></a>旁枝末叶 category 和 +load 方法</h2><p>我们知道，在类和category中都可以有+load方法，那么有两个问题：</p>
+<ol>
+<li>在类的+load方法调用的时候，我们可以调用category中声明的方法么？</li>
+<li>这么些个+load方法，调用顺序是咋样的呢？</li>
+</ol>
+<p>鉴于上述几节我们看的代码太多了，对于这两个问题我们先来看一点直观的：</p>
+<p><img src="http://tech.meituan.com/img/diveintocategory/project.png" alt></p>
+<p>我们的代码里有MyClass和MyClass的两个category （Category1和Category2），MyClass和两个category都添加了+load方法，并且Category1和Category2都写了MyClass的printName方法。<br>在Xcode中点击Edit Scheme，添加如下两个环境变量（可以在执行load方法以及加载category的时候打印log信息，更多的环境变量选项可参见objc-private.h）:<br><img src="http://tech.meituan.com/img/diveintocategory/environment_vars.png" alt></p>
+<p>运行项目，我们会看到控制台打印很多东西出来，我们只找到我们想要的信息，顺序如下：</p>
+<pre><code>objc[1187]: REPLACED: -[MyClass printName] by category Category1
+objc[1187]: REPLACED: -[MyClass printName] by category Category2
+.
+.
+.
+objc[1187]: LOAD: class &#39;MyClass&#39; scheduled for +load
+objc[1187]: LOAD: category &#39;MyClass(Category1)&#39; scheduled for +load
+objc[1187]: LOAD: category &#39;MyClass(Category2)&#39; scheduled for +load
+objc[1187]: LOAD: +[MyClass load]
+.
+.
+.
+objc[1187]: LOAD: +[MyClass(Category1) load]
+.
+.
+.
+objc[1187]: LOAD: +[MyClass(Category2) load]
+</code></pre><p>所以，对于上面两个问题，答案是很明显的：</p>
+<ol>
+<li>可以调用，因为附加category到类的工作会先于+load方法的执行</li>
+</ol>
+<ul>
+<li>+load的执行顺序是先类，后category，而category的+load执行顺序是根据编译顺序决定的。<br>目前的编译顺序是这样的：</li>
+</ul>
+<p><img src="http://tech.meituan.com/img/diveintocategory/compile1.png" alt></p>
+<p>我们调整一个Category1和Category2的编译顺序，run。ok，我们可以看到控制台的输出顺序变了：</p>
+<p><img src="http://tech.meituan.com/img/diveintocategory/compile2.png" alt></p>
+<pre><code>objc[1187]: REPLACED: -[MyClass printName] by category Category2
+objc[1187]: REPLACED: -[MyClass printName] by category Category1
+.
+.
+.
+objc[1187]: LOAD: class &#39;MyClass&#39; scheduled for +load
+objc[1187]: LOAD: category &#39;MyClass(Category2)&#39; scheduled for +load
+objc[1187]: LOAD: category &#39;MyClass(Category1)&#39; scheduled for +load
+objc[1187]: LOAD: +[MyClass load]
+.
+.
+.
+objc[1187]: LOAD: +[MyClass(Category2) load]
+.
+.
+.
+objc[1187]: LOAD: +[MyClass(Category1) load]
+</code></pre><p>虽然对于+load的执行顺序是这样，但是对于“覆盖”掉的方法，则会先找到最后一个编译的category里的对应方法。</p>
+<p>这一节我们只是用很直观的方式得到了问题的答案，有兴趣的同学可以继续去研究一下OC的运行时代码。</p>
+<h2 id="触类旁通-category-和方法覆盖"><a href="#触类旁通-category-和方法覆盖" class="headerlink" title="触类旁通 category 和方法覆盖"></a>触类旁通 category 和方法覆盖</h2><p>鉴于上面几节我们已经把原理都讲了，这一节只有一个问题:</p>
+<p>怎么调用到原来类中被category覆盖掉的方法？</p>
+<p>对于这个问题，我们已经知道category其实并不是完全替换掉原来类的同名方法，只是category在方法列表的前面而已，所以我们只要顺着方法列表找到最后一个对应名字的方法，就可以调用原来类的方法：</p>
+<pre><code>Class currentClass = [MyClass class];
+MyClass *my = [[MyClass alloc] init];
+
+if (currentClass) {
+    unsigned int methodCount;
+    Method *methodList = class_copyMethodList(currentClass, &amp;methodCount);
+    IMP lastImp = NULL;
+    SEL lastSel = NULL;
+    for (NSInteger i = 0; i &lt; methodCount; i++) {
+        Method method = methodList[i];
+        NSString *methodName = [NSString stringWithCString:sel_getName(method_getName(method)) 
+                                        encoding:NSUTF8StringEncoding];
+        if ([@&quot;printName&quot; isEqualToString:methodName]) {
+            lastImp = method_getImplementation(method);
+            lastSel = method_getName(method);
+        }
+    }
+    typedef void (*fn)(id,SEL);
+
+    if (lastImp != NULL) {
+        fn f = (fn)lastImp;
+        f(my,lastSel);
+    }
+    free(methodList);
+}
+</code></pre><h2 id="更上一层-category-和关联对象"><a href="#更上一层-category-和关联对象" class="headerlink" title="更上一层 category 和关联对象"></a>更上一层 category 和关联对象</h2><p>如上所见，我们知道在category里面是无法为category添加实例变量的。但是我们很多时候需要在category中添加和对象关联的值，这个时候可以求助关联对象来实现。</p>
+<p>MyClass+Category1.h:</p>
+<pre><code>#import &quot;MyClass.h&quot;
+
+@interface MyClass (Category1)
+
+@property(nonatomic,copy) NSString *name;
+
+@end
+</code></pre><p>MyClass+Category1.m:</p>
+<pre><code>#import &quot;MyClass+Category1.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+@implementation MyClass (Category1)
+
++ (void)load
+{
+    NSLog(@&quot;%@&quot;,@&quot;load in Category1&quot;);
+}
+
+- (void)setName:(NSString *)name
+{
+    objc_setAssociatedObject(self,
+                             &quot;name&quot;,
+                             name,
+                             OBJC_ASSOCIATION_COPY);
+}
+
+- (NSString*)name
+{
+    NSString *nameObject = objc_getAssociatedObject(self, &quot;name&quot;);
+    return nameObject;
+}
+
+@end
+</code></pre><p>但是关联对象又是存在什么地方呢？ 如何存储？ 对象销毁时候如何处理关联对象呢？<br>我们去翻一下runtime的源码，在objc-references.mm文件中有个方法_object_set_associative_reference：</p>
+<pre><code>void _object_set_associative_reference(id object, void *key, id value, uintptr_t policy) {
+    // retain the new value (if any) outside the lock.
+    ObjcAssociation old_association(0, nil);
+    id new_value = value ? acquireValue(value, policy) : nil;
+    {
+        AssociationsManager manager;
+        AssociationsHashMap &amp;associations(manager.associations());
+        disguised_ptr_t disguised_object = DISGUISE(object);
+        if (new_value) {
+            // break any existing association.
+            AssociationsHashMap::iterator i = associations.find(disguised_object);
+            if (i != associations.end()) {
+                // secondary table exists
+                ObjectAssociationMap *refs = i-&gt;second;
+                ObjectAssociationMap::iterator j = refs-&gt;find(key);
+                if (j != refs-&gt;end()) {
+                    old_association = j-&gt;second;
+                    j-&gt;second = ObjcAssociation(policy, new_value);
+                } else {
+                    (*refs)[key] = ObjcAssociation(policy, new_value);
+                }
+            } else {
+                // create the new association (first time).
+                ObjectAssociationMap *refs = new ObjectAssociationMap;
+                associations[disguised_object] = refs;
+                (*refs)[key] = ObjcAssociation(policy, new_value);
+                _class_setInstancesHaveAssociatedObjects(_object_getClass(object));
+            }
+        } else {
+            // setting the association to nil breaks the association.
+            AssociationsHashMap::iterator i = associations.find(disguised_object);
+            if (i !=  associations.end()) {
+                ObjectAssociationMap *refs = i-&gt;second;
+                ObjectAssociationMap::iterator j = refs-&gt;find(key);
+                if (j != refs-&gt;end()) {
+                    old_association = j-&gt;second;
+                    refs-&gt;erase(j);
+                }
+            }
+        }
+    }
+    // release the old value (outside of the lock).
+    if (old_association.hasValue()) ReleaseValue()(old_association);
+}
+</code></pre><p>我们可以看到所有的关联对象都由AssociationsManager管理，而AssociationsManager定义如下：</p>
+<pre><code>class AssociationsManager {
+    static OSSpinLock _lock;
+    static AssociationsHashMap *_map;               // associative references:  object pointer -&gt; PtrPtrHashMap.
+public:
+    AssociationsManager()   { OSSpinLockLock(&amp;_lock); }
+    ~AssociationsManager()  { OSSpinLockUnlock(&amp;_lock); }
+
+    AssociationsHashMap &amp;associations() {
+        if (_map == NULL)
+            _map = new AssociationsHashMap();
+        return *_map;
+    }
+};
+</code></pre><p>AssociationsManager里面是由一个静态AssociationsHashMap来存储所有的关联对象的。这相当于把所有对象的关联对象都存在一个全局map里面。而map的的key是这个对象的指针地址（任意两个不同对象的指针地址一定是不同的），而这个map的value又是另外一个AssociationsHashMap，里面保存了关联对象的kv对。<br>而在对象的销毁逻辑里面，见objc-runtime-new.mm:</p>
+<pre><code>void *objc_destructInstance(id obj) 
+{
+    if (obj) {
+        Class isa_gen = _object_getClass(obj);
+        class_t *isa = newcls(isa_gen);
+
+        // Read all of the flags at once for performance.
+        bool cxx = hasCxxStructors(isa);
+        bool assoc = !UseGC &amp;&amp; _class_instancesHaveAssociatedObjects(isa_gen);
+
+        // This order is important.
+        if (cxx) object_cxxDestruct(obj);
+        if (assoc) _object_remove_assocations(obj);
+
+        if (!UseGC) objc_clear_deallocating(obj);
+    }
+
+    return obj;
+}
+</code></pre><p>嗯，runtime的销毁对象函数objc_destructInstance里面会判断这个对象有没有关联对象，如果有，会调用_object_remove_assocations做关联对象的清理工作。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>正如侯捷先生所讲-“源码面前，了无秘密”，Apple的Cocoa Touch框架虽然并不开源，但是Objective-C的runtime和Core Foundation却是完全开放源码的(在<a href="http://www.opensource.apple.com/tarballs/" target="_blank" rel="noopener">http://www.opensource.apple.com/tarballs/</a>可以下载到全部的开源代码)。<br>本系列runtime源码学习将会持续更新，意犹未尽的同学可以自行到上述网站下载源码学习。行笔简陋，如有错误，望指正。</p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">支援小编点噻  $_$！！！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://yoursite.com" class="b-link-green">张成的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2016/12/21/20162017/2016-12-21-Objective-C-Category/" class="b-link-green">Objective-C：Category</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'FoAoUvphmpdeetPbpxip1NYf-gzGzoHsz',
+        appKey: '4Y0wsTcEcIoUjAJhUQFqJnyz',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '说点什么吧'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2016/12/26/20162017/2016-12-26-ReactiveCocoa-基础/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="ReactiveCocoa 基础">
+                        
+                        <span class="card-title">ReactiveCocoa 基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">ReactiveCocoa基础
+本文修改自最快让你上手ReactiveCocoa之基础篇
+有关对 ReactiveCocoa 的看法可以看一下唐巧的这篇ReactiveCocoa 讨论会
+
+
+ReactiveCocoa简介
+Reactive</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2016-12-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            BY
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/iOS/" target="_blank">
+                        <span class="chip bg-color">iOS</span>
+                    </a>
+                    
+                    <a href="/tags/ReactiveCocoa/" target="_blank">
+                        <span class="chip bg-color">ReactiveCocoa</span>
+                    </a>
+                    
+                    <a href="/tags/函数式编程/" target="_blank">
+                        <span class="chip bg-color">函数式编程</span>
+                    </a>
+                    
+                    <a href="/tags/开源框架/" target="_blank">
+                        <span class="chip bg-color">开源框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2016/11/28/20162017/2016-11-28-Objective-C-RunLoop/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Objective-C：RunLoop">
+                        
+                        <span class="card-title">Objective-C：RunLoop</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">深入理解RunLoop
+本文转自：《深入理解RunLoop》
+
+前言RunLoop 是 iOS 和 OSX 开发中非常基础的一个概念，这篇文章将从 CFRunLoop 的源码入手，介绍 RunLoop 的概念以及底层实现原理。之后会介绍一下</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2016-11-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            BY
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/iOS/" target="_blank">
+                        <span class="chip bg-color">iOS</span>
+                    </a>
+                    
+                    <a href="/tags/Obj-C/" target="_blank">
+                        <span class="chip bg-color">Obj-C</span>
+                    </a>
+                    
+                    <a href="/tags/RunLoop/" target="_blank">
+                        <span class="chip bg-color">RunLoop</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright © 2019 zhangcheng All Rights Reserved.
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+
+    <a href="mailto:2508723631@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2508723631" class="tooltipped" data-tooltip="QQ联系我: 2508723631" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+    <!--
+        Facebook: fa-facebook
+        Twitter: fa-twitter
+        Google-plus: fa-google-plus
+        Linkedin: fa-linkedin
+        Tumblr: fa-tumblr
+        Medium: fa-medium
+        Slack: fa-slack
+        新浪微博: fa-weibo
+        微信: fa-wechat
+     -->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
