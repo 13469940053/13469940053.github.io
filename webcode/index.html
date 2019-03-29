@@ -59,6 +59,15 @@
     </li>
     
     <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
         <a href="/categories" class="waves-effect waves-light">
             
             <i class="fa fa-bookmark"></i>
@@ -72,7 +81,7 @@
             
             <i class="fa fa-archive"></i>
             
-            <span>归档</span>
+            <span>总览</span>
         </a>
     </li>
     
@@ -81,7 +90,7 @@
             
             <i class="fa fa-user-circle-o"></i>
             
-            <span>关于</span>
+            <span>关于我</span>
         </a>
     </li>
     
@@ -90,7 +99,7 @@
             
             <i class="fa fa-address-book"></i>
             
-            <span>友情链接</span>
+            <span>网络课堂</span>
         </a>
     </li>
     
@@ -99,7 +108,7 @@
             
             <i class="fa fa-user-md"></i>
             
-            <span>前端</span>
+            <span>我的前端知识</span>
         </a>
     </li>
     
@@ -138,6 +147,15 @@
         </li>
         
         <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
             <a href="/categories" class="waves-effect waves-light">
                 
                 <i class="fa fa-fw fa-bookmark"></i>
@@ -151,7 +169,7 @@
                 
                 <i class="fa fa-fw fa-archive"></i>
                 
-                归档
+                总览
             </a>
         </li>
         
@@ -160,7 +178,7 @@
                 
                 <i class="fa fa-fw fa-user-circle-o"></i>
                 
-                关于
+                关于我
             </a>
         </li>
         
@@ -169,7 +187,7 @@
                 
                 <i class="fa fa-fw fa-address-book"></i>
                 
-                友情链接
+                网络课堂
             </a>
         </li>
         
@@ -178,7 +196,7 @@
                 
                 <i class="fa fa-fw fa-user-md"></i>
                 
-                前端
+                我的前端知识
             </a>
         </li>
         
@@ -342,6 +360,20 @@
                 </div>
 
                 
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        189
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        1 分
+                    </div>
+                    
+                
 				
 				
                     <div id="busuanzi_container_page_pv" class="info-break-policy">
@@ -376,6 +408,8 @@
 <p><a href="http://pan.baidu.com/s/1YtGHSJprjcTTEXs8SLvu4w" target="_blank" rel="noopener">http://pan.baidu.com/s/1YtGHSJprjcTTEXs8SLvu4w</a></p>
 <p><a href="http://pan.baidu.com/s/1hquYlRA" target="_blank" rel="noopener">http://pan.baidu.com/s/1hquYlRA</a></p>
 <p><a href="http://pan.baidu.com/s/1dF4ragD" target="_blank" rel="noopener">http://pan.baidu.com/s/1dF4ragD</a></p>
+<p>Adobe cs6部分软件</p>
+<p><a href="https://pan.baidu.com/s/1c2v33Ss" target="_blank" rel="noopener">https://pan.baidu.com/s/1c2v33Ss</a></p>
 
             </div>
             <hr>
@@ -879,6 +913,43 @@ http://pa</div>
 </div>
 
 
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 张成的博客<br />'
+            + '作者: Zhangcheng<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget">
@@ -982,6 +1053,9 @@ http://pa</div>
         <div class="col s12 m8 l8 copy-right">
             Copyright © 2019 zhangcheng All Rights Reserved.
             
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">291.3k</span>
+            
 
             
 			
@@ -1001,6 +1075,12 @@ http://pa</div>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
+
+    <a href="https://weibo.com/u/6420410379?is_all=1" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
 
 
 

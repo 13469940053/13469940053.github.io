@@ -1,0 +1,1377 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python爬虫实战(三) — 微信文章爬虫, 无浪网、张成的博客、无风不起浪网、无浪博客">
+    <meta name="description" content="前言最近烦心事挺多的，能让我得到快乐的是一行行能够运行的代码，那么今天为大家带来微信文章爬取实战。
+本篇目标
+
+根据关键词搜索微信文章，并提取文章链接
+自动保存微信文章，并保存为HTML格式
+实现设置提取文章数目，并提供有关交互操作
+
+
+快">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Python爬虫实战(三) — 微信文章爬虫 | 张成的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+</head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">张成的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>总览</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>网络课堂</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/webcode" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-md"></i>
+            
+            <span>我的前端知识</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">张成的博客</div>
+        <div class="logo-desc">
+            
+            无浪网、张成的博客、无浪博客、无风不起浪网由张成初期学习前端知识所做，仅供学习和资料储存使用！张成留言
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                总览
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                网络课堂
+            </a>
+        </li>
+        
+        <li>
+            <a href="/webcode" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-md"></i>
+                
+                我的前端知识
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Python爬虫实战(三) — 微信文章爬虫
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Python/" target="_blank">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/爬虫/" target="_blank">
+                                <span class="chip bg-color">爬虫</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2018-03-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.8k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        9 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近烦心事挺多的，能让我得到快乐的是一行行能够运行的代码，那么今天为大家带来微信文章爬取实战。</p>
+<h1 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a>本篇目标</h1><blockquote>
+<ol>
+<li>根据关键词搜索微信文章，并提取文章链接</li>
+<li>自动保存微信文章，并保存为HTML格式</li>
+<li>实现设置提取文章数目，并提供有关交互操作</li>
+</ol>
+</blockquote>
+<h1 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h1><h2 id="1-确定URL链接格式"><a href="#1-确定URL链接格式" class="headerlink" title="1.确定URL链接格式"></a>1.确定URL链接格式</h2><p>首先打开<a href="http://weixin.sogou.com/" target="_blank" rel="noopener">搜狗微信搜索平台</a>，任意搜索一个感兴趣的关键词，观察网址<code>http://weixin.sogou.com/weixin?type=2&amp;query=%E5%B0%8F%E7%B1%B3&amp;ie=utf8&amp;s_from=input&amp;_sug_=n&amp;_sug_type_=1&amp;w=01015002&amp;oq=&amp;ri=0&amp;sourceid=sugg&amp;sut=0&amp;sst0=1520605349656&amp;lkt=0%2C0%2C0&amp;p=40040108</code><br>这里我输入的是小米，可以观察到，链接中type字段控制检索信息类型，query字段则对应于我们的关键词，因为会自动编码，所以我看看到的是%E5…类似信息，其他内容则是无关信息，这里我们不讨论，下面点击下一页，<br><code>http://weixin.sogou.com/weixin?oq=&amp;query=%E5%B0%8F%E7%B1%B3&amp;_sug_type_=1&amp;sut=0&amp;lkt=0%2C0%2C0&amp;s_from=input&amp;ri=0&amp;_sug_=n&amp;type=2&amp;sst0=1520605349656&amp;page=2&amp;ie=utf8&amp;p=40040108&amp;dp=1&amp;w=01015002&amp;dr=1</code><br>观察到链接中多出了一个page字段，对应于数字2，猜测这就是页码，尝试之后，果不其然，我们的猜测是正确的，下面我们来爬取文章的具体内容</p>
+<h2 id="2-提取文章地址"><a href="#2-提取文章地址" class="headerlink" title="2.提取文章地址"></a>2.提取文章地址</h2><p>点击F12，通过控制台，我们发现文章网址对应在，txt-box元素下，如图<br><img src="http://ww1.sinaimg.cn/large/6712cbb1gy1fp6xrthrcgj221q17snhz.jpg" alt><br>由此，我们很容易的写出我们的匹配模式代码</p>
+<pre><code>&#39;&lt;div class=&quot;txt-box&quot;&gt;.*?(http://.*?)&quot;&#39;
+</code></pre><p>对应完整代码如下：</p>
+<pre><code>def getlisturl(key, pagestart, pageend):
+try:
+    page = pagestart
+    keycode = urllib.request.quote(key)
+    pagecode = urllib.request.quote(&quot;&amp;page&quot;)
+    for page in range(pagestart, pageend+1):
+        url = &quot;http://weixin.sogou.com/weixin?type=2&amp;query=&quot; + keycode + pagecode + str(page)
+        data1 = downloader(url)
+        listurlpat = &#39;&lt;div class=&quot;txt-box&quot;&gt;.*?(http://.*?)&quot;&#39;
+        data2 = re.compile(listurlpat, re.S)
+        result = data2.findall(data1)
+        listurl.append(result)
+        #print(listurl)
+    print(&quot;共获取到&quot; + str(len(listurl)) + &quot;页&quot;)
+    return listurl
+except urllib.error.URLError as e:
+    if hasattr(e, &quot;code&quot;):
+        print(e.code)
+    if hasattr(e, &quot;reason&quot;):
+        print(e.reason)
+    time.sleep(10)
+except Exception as e:
+    print(&quot;exception:&quot; + str(e))
+    time.sleep(1)
+</code></pre><p>其中，key对应于关键词，pagestart对应于起始页码，默认为第一页，pageend对应于终止页码。</p>
+<h2 id="下载模块"><a href="#下载模块" class="headerlink" title="下载模块"></a>下载模块</h2><p>我们需要从对应链接中下载内容，才能做到后面内容的提取，这里，下载模块我提供了两种方案，一种使用了代理服务器，一种没有使用，下面是没有使用代理服务器的代码：</p>
+<pre><code>def downloader(url):
+headers = (&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 &quot;
+                         &quot;(KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 &quot;
+                         &quot;Core/1.63.4793.400 QQBrowser/10.0.702.400&quot;)
+opener = urllib.request.build_opener()
+opener.addheaders = [headers]
+urllib.request.install_opener(opener)
+try:
+    data = urllib.request.urlopen(url).read()
+    data = data.decode(&#39;utf-8&#39;)
+    return data
+except urllib.error.URLError as e:
+    if hasattr(e, &quot;code&quot;):
+        print(e.code)
+    if hasattr(e, &quot;reason&quot;):
+        print(e.reason)
+    time.sleep(10)
+except Exception as e:
+    print(&quot;exception:&quot; + str(e))
+    time.sleep(1)
+</code></pre><p>这里使用了一些简单的伪装，以防止微信对爬虫的阻止，但这样并不安全，所以在完整代码中还提供了代理服务器模块，但是因为免费的代理服务器几乎都不能用，所以在此不多讲解。</p>
+<h1 id="完整代码如下"><a href="#完整代码如下" class="headerlink" title="完整代码如下"></a>完整代码如下</h1><pre><code>import re
+import urllib.request
+import time
+import urllib.error
+
+&#39;&#39;&#39;
+def use_proxy(proxy_addr, url):
+    headers = (&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 &quot;
+                             &quot;(KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 &quot;
+                             &quot;Core/1.63.4793.400 QQBrowser/10.0.702.400&quot;)
+    opener = urllib.request.build_opener()
+    opener.addheaders = [headers]
+    urllib.request.install_opener(opener)
+    try:
+        proxy = urllib.request.ProxyHandler({&#39;http&#39;:proxy_addr})
+        opener = urllib.request.build_opener(proxy, urllib.request.HTTPHandler)
+        urllib.request.install_opener(opener)
+        data = urllib.request.urlopen(url).read().decode(&#39;utf-8&#39;)
+        return data
+    except urllib.error.URLError as e:
+        if hasattr(e, &quot;code&quot;):
+            print(e.code)
+        if hasattr(e, &quot;reason&quot;):
+            print(e.reason)
+        time.sleep(10)
+    except Exception as e:
+        print(&quot;exception:&quot; + str(e))
+        time.sleep(1)
+&#39;&#39;&#39;
+
+
+def downloader(url):
+    headers = (&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 &quot;
+                             &quot;(KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 &quot;
+                             &quot;Core/1.63.4793.400 QQBrowser/10.0.702.400&quot;)
+    opener = urllib.request.build_opener()
+    opener.addheaders = [headers]
+    urllib.request.install_opener(opener)
+    try:
+        data = urllib.request.urlopen(url).read()
+        data = data.decode(&#39;utf-8&#39;)
+        return data
+    except urllib.error.URLError as e:
+        if hasattr(e, &quot;code&quot;):
+            print(e.code)
+        if hasattr(e, &quot;reason&quot;):
+            print(e.reason)
+        time.sleep(10)
+    except Exception as e:
+        print(&quot;exception:&quot; + str(e))
+        time.sleep(1)
+
+
+def getlisturl(key, pagestart, pageend):
+    try:
+        page = pagestart
+        keycode = urllib.request.quote(key)
+        pagecode = urllib.request.quote(&quot;&amp;page&quot;)
+        for page in range(pagestart, pageend+1):
+            url = &quot;http://weixin.sogou.com/weixin?type=2&amp;query=&quot; + keycode + pagecode + str(page)
+            data1 = downloader(url)
+            listurlpat = &#39;&lt;div class=&quot;txt-box&quot;&gt;.*?(http://.*?)&quot;&#39;
+            data2 = re.compile(listurlpat, re.S)
+            result = data2.findall(data1)
+            listurl.append(result)
+            #print(listurl)
+        print(&quot;共获取到&quot; + str(len(listurl)) + &quot;页&quot;)
+        return listurl
+    except urllib.error.URLError as e:
+        if hasattr(e, &quot;code&quot;):
+            print(e.code)
+        if hasattr(e, &quot;reason&quot;):
+            print(e.reason)
+        time.sleep(10)
+    except Exception as e:
+        print(&quot;exception:&quot; + str(e))
+        time.sleep(1)
+
+
+def getcontent(listurl):
+    i = 0
+    html1 = &#39;&#39;&#39;&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+    &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+    &lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;微信文章页面&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&#39;&#39;&#39;
+    fh = open(&quot;C://Users/59574/Desktop/python/test/WeChatSpider/1.html&quot;, &quot;wb&quot;)
+    fh.write(html1.encode(&quot;utf-8&quot;))
+    fh.close()
+    fh = open(&quot;C://Users/59574/Desktop/python/test/WeChatSpider/1.html&quot;, &quot;ab&quot;)
+    for i in range(0, len(listurl)):
+        for j in range(0, len(listurl[i])):
+            try:
+                url = listurl[i][j]
+                url = url.replace(&quot;amp;&quot;, &quot;&quot;)
+                data = downloader(url)
+                titlepat = &quot;&lt;title&gt;(.*?)&lt;/title&gt;&quot;
+                contentpat = &#39;id=&quot;js_content&quot;&gt;(.*?)id=&quot;js_sg_bar&quot;&#39;
+                title = re.compile(titlepat).findall(data)
+                content = re.compile(contentpat, re.S).findall(data)
+                if (title != []):
+                    thistitle = title[0]
+                if (content != []):
+                    thiscontent = content[0]
+                dataall = &quot;&lt;p&gt;标题为:&quot; + thistitle + &quot;&lt;/p&gt;&lt;p&gt;内容为:&quot; + thiscontent + &quot;&lt;/p&gt;&lt;br&gt;&quot;
+                fh.write(dataall.encode(&quot;utf-8&quot;))
+                print(&quot;第&quot;+str(i+1) + &quot;个网页第&quot; + str(j+1) + &quot;条内容保存&quot;)
+            except urllib.error.URLError as e:
+                if hasattr(e, &quot;code&quot;):
+                    print(e.code)
+                if hasattr(e, &quot;reason&quot;):
+                    print(e.reason)
+                time.sleep(10)
+            except Exception as e:
+                print(&quot;exception:&quot; + str(e))
+                time.sleep(1)
+    fh.close()
+    html2 = &#39;&#39;&#39;&lt;/body&gt;
+    &lt;/html&gt;
+    &#39;&#39;&#39;
+    fh = open(&quot;C://Users/59574/Desktop/python/test/WeChatSpider/1.html&quot;, &quot;ab&quot;)
+    fh.write(html2.encode(&quot;utf-8&quot;))
+    fh.close()
+
+
+if __name__ == &#39;__main__&#39;:
+    listurl = list()
+    key = str(input(&#39;请输入要查询的关键词：&#39;))
+    #proxy = &quot;115.223.209.169:9000&quot;
+    pagestart = 1
+    pageend = int(input(&#39;请输入结束页码(每页保存10条内容)&#39;))
+    listurl = getlisturl(key, pagestart, pageend)
+    getcontent(listurl)
+</code></pre><h1 id="Github版本"><a href="#Github版本" class="headerlink" title="Github版本"></a>Github版本</h1><p><a href="https://github.com/wanghaodi/WeChatSpider" target="_blank" rel="noopener">Github代码</a></p>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p><img src="http://ww1.sinaimg.cn/large/6712cbb1gy1fp6y6ukij1j21t40diwfw.jpg" alt></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>开学了，事情有些多，个人的一些事情也让人难过，不过我会尽力更新，下一次我会为大家带来该代码多线程运行版本。<br>最后，希望大家都能尊重我的付出，转载我的文章请注明出处；<br>也希望大家关注我的个人博客 <a href="https://wanghaodi.top" target="_blank" rel="noopener">HD Blog</a></p>
+<p>谢谢~</p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">支援小编点噻  $_$！！！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://yoursite.com" class="b-link-green">张成的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2018/03/09/20162017/2018-03-09-python-pa-chong-shi-zhan-san-wei-xin-wen-zhang-pa-chong/" class="b-link-green">Python爬虫实战(三) — 微信文章爬虫</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'FoAoUvphmpdeetPbpxip1NYf-gzGzoHsz',
+        appKey: '4Y0wsTcEcIoUjAJhUQFqJnyz',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '说点什么吧'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2018/03/27/20162017/2018-03-27-zhong-wen-fen-ci-yuan-li-ji-chang-yong-python-zhong-wen-fen-ci-ku-jie-shao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="中文分词原理及常用Python中文分词库介绍">
+                        
+                        <span class="card-title">中文分词原理及常用Python中文分词库介绍</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+转自 进击的Coder 公众号
+
+原理中文分词，即 Chinese Word Segmentation，即将一个汉字序列进行切分，得到一个个单独的词。表面上看，分词其实就是那么回事，但分词效果好不好对信息检索、实验结果还是有很大影响的，同</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-03-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            HD
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/中文分词/" target="_blank">
+                        <span class="chip bg-color">中文分词</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/02/25/20162017/2018-02-25-github-pages-huo-ge-ren-yu-ming-shi-xian-https-fang-wen/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Github-pages或个人域名实现https访问">
+                        
+                        <span class="card-title">Github-pages或个人域名实现https访问</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">前言HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SS</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-02-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            HD
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
+                    </a>
+                    
+                    <a href="/tags/SSL/" target="_blank">
+                        <span class="chip bg-color">SSL</span>
+                    </a>
+                    
+                    <a href="/tags/https/" target="_blank">
+                        <span class="chip bg-color">https</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 张成的博客<br />'
+            + '作者: Zhangcheng<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright © 2019 zhangcheng All Rights Reserved.
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">291.3k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+    <a href="https://weibo.com/u/6420410379?is_all=1" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+
+    <a href="mailto:2508723631@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2508723631" class="tooltipped" data-tooltip="QQ联系我: 2508723631" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+    <!--
+        Facebook: fa-facebook
+        Twitter: fa-twitter
+        Google-plus: fa-google-plus
+        Linkedin: fa-linkedin
+        Tumblr: fa-tumblr
+        Medium: fa-medium
+        Slack: fa-slack
+        新浪微博: fa-weibo
+        微信: fa-wechat
+     -->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1740 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Objective-C Runtime 基本使用, 无浪网、张成的博客、无风不起浪网、无浪博客">
+    <meta name="description" content="前言
+在上一篇文章《Objective-C Runtime详解》中我们探讨了Runtime的基本原理，这篇文章我们将总结一下Runtime的一些基本使用
+
+使用方法
+查询方法
+给分类添加属性
+更换代码的实现方法
+动态添加方法
+字典转属性
+
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Objective-C Runtime 基本使用 | 张成的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+</head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">张成的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>总览</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>网络课堂</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/webcode" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-md"></i>
+            
+            <span>我的前端知识</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">张成的博客</div>
+        <div class="logo-desc">
+            
+            无浪网、张成的博客、无浪博客、无风不起浪网由张成初期学习前端知识所做，仅供学习和资料储存使用！张成留言
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                总览
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                网络课堂
+            </a>
+        </li>
+        
+        <li>
+            <a href="/webcode" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-md"></i>
+                
+                我的前端知识
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Objective-C Runtime 基本使用
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/iOS/" target="_blank">
+                                <span class="chip bg-color">iOS</span>
+                            </a>
+                        
+                            <a href="/tags/Obj-C/" target="_blank">
+                                <span class="chip bg-color">Obj-C</span>
+                            </a>
+                        
+                            <a href="/tags/Runtime/" target="_blank">
+                                <span class="chip bg-color">Runtime</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2017-02-04
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        3.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        16 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>在上一篇文章<a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener">《Objective-C Runtime详解》</a>中我们探讨了Runtime的基本原理，这篇文章我们将总结一下Runtime的一些基本使用</p>
+</blockquote>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><ul>
+<li>查询方法</li>
+<li>给分类添加属性</li>
+<li>更换代码的实现方法</li>
+<li>动态添加方法</li>
+<li>字典转属性</li>
+</ul>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p> 先创建两个类</p>
+<p><code>ClassA.h</code></p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface ClassA : NSObject {
+    // 公有变量
+    NSString *_publicVar1;
+    NSString *_publicVar2;
+
+}
+// 公有属性
+@property(nonatomic,copy) NSString *publicProperty1;
+@property(nonatomic,copy) NSString *publicProperty2;
+
+/* 公有方法 */
+-(void)methodAOfClassAWithArg:(NSString *)arg;
+
+@end
+
+</code></pre><p><code>ClassA.m</code></p>
+<pre><code>#import &quot;ClassA.h&quot;
+
+@interface ClassA()
+// 私有属性
+@property(nonatomic,copy) NSString *privateProperty1;
+@property(nonatomic,copy) NSString *privateProperty2;
+
+@end
+
+@implementation ClassA {
+    // 私有变量
+    NSString *_privateVar1;
+    NSString *_privateVar2;
+}
+
+/* 公有方法 */
+-(void)methodAOfClassAWithArg:(NSString *)arg {
+    NSLog(@&quot; methodAOfClassA arg = %@&quot;, arg);
+}
+
+/* 私有方法 */
+-(void)MethodBOfClassAWithArg:(NSString *)arg {
+    NSLog(@&quot; methodBOfClassA arg = %@&quot;, arg);
+}
+@end
+</code></pre><p><code>ClassB.h</code></p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface ClassB : NSObject
+
+/* 公有方法 */
+-(void)methodAOfClassBWithArg:(NSString *)arg;
+
+@end
+</code></pre><p><code>ClassB.m</code></p>
+<pre><code>#import &quot;ClassB.h&quot;
+
+@implementation ClassB
+- (void)methodAOfClassBWithArg:(NSString *)arg {
+    NSLog(@&quot; methodAOfClassB arg = %@&quot;, arg);
+}
+
+-(void)methodBOfClassBWithArg:(NSString *)arg {
+    NSLog(@&quot; methodBOfClassB arg = %@&quot;, arg);
+}
+
+@end
+</code></pre><h2 id="查询方法"><a href="#查询方法" class="headerlink" title="查询方法"></a>查询方法</h2><hr>
+<p>在Objective-C Runtime下没有真正意义上的私有变量和方法，因为这些私有变量和方法都可以通过Runtime方法获取，这当然包括系统的私有API。接下来我们来一一介绍获取类中属性和方法的方法。当然不要忘了<code>#import &lt;objc/runtime.h&gt;</code>.</p>
+<h4 id="获取类的名称"><a href="#获取类的名称" class="headerlink" title="获取类的名称"></a>获取类的名称</h4><p>方法：<code>const char *object_getClassName(id obj)</code>，使用比较简单，传入对象即可得到对应分类名。</p>
+<pre><code>ClassA *classA = [[ClassA alloc] init];
+const char *className = object_getClassName(classA);
+NSLog(@&quot;className = %@&quot;, [NSString stringWithUTF8String:className]);
+
+//输出
+className = ClassA
+</code></pre><h4 id="获取类中的方法"><a href="#获取类中的方法" class="headerlink" title="获取类中的方法"></a>获取类中的方法</h4><p>方法：<code>Method *class_copyMethodList(Class cls, unsigned int *outCount)</code></p>
+<p>上代码：</p>
+<pre><code>UInt32 count;
+char dst;
+Method *methods = class_copyMethodList([classA class], &amp;count);//获取方法列表
+for (int i = 0; i &lt; count; i++) {
+    Method method = methods[i];// 获取方法
+    SEL methodName = method_getName(method);// 获取方法名
+    method_getReturnType(method, &amp;dst, sizeof(char));// 获取方法返回类型
+    const char *methodType = method_getTypeEncoding(method);// 获取方法参数类型和返回类型
+    NSLog(@&quot;methodName = %@&quot;,NSStringFromSelector(methodName));
+    NSLog(@&quot;dst = %c&quot;, dst);
+}
+
+ // 输出
+ methodName = methodAOfClassAWithArg:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = MethodBOfClassAWithArg:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = publicProperty1
+ dst = @
+ methodType = @16@0:8
+ methodName = setPublicProperty1:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = publicProperty2
+ dst = @
+ methodType = @16@0:8
+ methodName = setPublicProperty2:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = privateProperty1
+ dst = @
+ methodType = @16@0:8
+ methodName = setPrivateProperty1:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = privateProperty2
+ dst = @
+ methodType = @16@0:8
+ methodName = setPrivateProperty2:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = .cxx_destruct
+ dst = v
+ methodType = v16@0:8
+
+</code></pre><p><code>class_copyMethodList([classA class], &amp;count)</code> 传入元类和计数器地址，返回方法列表。这里注意，返回的是<code>Method</code>结构体类型的C数组，<code>Method</code>类型我们在<a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener">上篇文章</a>中已经详细说明，</p>
+<pre><code>typedef struct objc_method *Method;
+
+struct objc_method {
+    SEL method_name                                          OBJC2_UNAVAILABLE;
+    char *method_types                                       OBJC2_UNAVAILABLE;
+    IMP method_imp                                           OBJC2_UNAVAILABLE;
+}
+</code></pre><p>但要区分<code>Method *methods</code>与<code>Method method</code>的区别，这是比较基础C语言知识。还有<code>Uint32</code>是OC定义的<code>unsigned int</code>类型<code>typedef unsigned int UInt32;</code></p>
+<p>这里我们来看看 <code>method_getReturnType(method, &amp;dst, sizeof(char))</code> 方法简单输出返回值类型，输出为 <code>v</code> 和 <code>@</code> ,参考Apple文档可知道返回类型为 <code>void</code> 和 <code>id</code></p>
+<pre><code>A void v
+A method selector (SEL)  ：
+An object (whether statically typed or typed id) @
+</code></pre><p><code>method_getTypeEncoding(method)</code>方法可以输出返回值，参数类型以及接收器类型。我们看输出的<code>v24@0:8@16</code>，分析上面的说明就可以知道： <code>v24</code>返回类型为<code>viod</code>,<code>@0</code>接收器类型为<code>id</code>,<code>@16</code>参数类型为<code>id</code></p>
+<p>至于类型后面的值观察可以发现都是相差8，我认为是在method中的位置，分别以8bit存储不同类型的数据。</p>
+<p>若有两个参数返回值为 <code>v32@0:8@16@24</code> ,对比可以猜测，在method中各个成员的排列是这样的： <code>接收器|SEl标识|参数1|参数2|...|返回值</code>，然后由 <code>method_getTypeEncoding(method)</code> 输出的顺序为: <code>返回值类型|接收器类型|SEL标识|参数1|参数2|...</code> 此处为个人见解，如有错误或不同意见欢迎提出探讨。</p>
+<p>最后发现了一个奇怪的方法 <code>.cxx_destruct</code> ,在中<a href="http://my.safaribooksonline.com/book/programming/objective-c/9780132908641/3dot-memory-management/ch03" target="_blank" rel="noopener">这篇文章</a>中：</p>
+<blockquote>
+<p>ARC actually creates a -.cxx_destruct method to handle freeing instance variables. This method was originally created for calling C++ destructors automatically when an object was destroyed.</p>
+</blockquote>
+<p>和《Effective Objective-C 2.0》中提到的：</p>
+<blockquote>
+<p>When the compiler saw that an object contained C++ objects, it would generate a method called .cxx_destruct. ARC piggybacks on this method and emits the required cleanup code within it.</p>
+</blockquote>
+<p>可以了解到，<code>.cxx_destruct</code> 方法原本是为了C++对象析构的，ARC借用了这个方法插入代码实现了自动内存释放的工作</p>
+<p>关于 <code>.cxx_destruct</code> 可以参考这篇文章:<a href="http://blog.jobbole.com/65028/" target="_blank" rel="noopener">ARC下dealloc过程及.cxx_destruct的探究</a></p>
+<h4 id="获取类中的属性"><a href="#获取类中的属性" class="headerlink" title="获取类中的属性"></a>获取类中的属性</h4><p>在 <a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener">上篇文章</a> 的 <code>Property</code> 中我们也提到了获取类中的属性的方法，如下：</p>
+<pre><code>id LenderClass = objc_getClass(&quot;ClassA&quot;);//获取classA 的元类同[ClassA class]
+unsigned int outCount;//属性数量
+// 获取属性列表
+objc_property_t *properties = class_copyPropertyList(LenderClass, &amp;outCount);
+
+// 遍历
+for (int i = 0; i &lt; outCount; i++) {
+
+    objc_property_t property = properties[i];
+
+    const char *propertyName = property_getName(property);// 获取属性名
+    const char *propertyAttributes = property_getAttributes(property);// 获取属性描述
+
+    printf(&quot;propertyName：%s \n&quot;, propertyName);
+    printf(&quot;propertyAttributes:%s\n--------\n&quot;, propertyAttributes);//属性名及描述
+}
+</code></pre><pre><code>// 输出
+propertyName：privateProperty1
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_privateProperty1
+--------
+propertyName：privateProperty2
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_privateProperty2
+--------
+propertyName：publicProperty1
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_publicProperty1
+--------
+propertyName：publicProperty2
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_publicProperty2
+--------
+</code></pre><p>发现会输出公有属性以及私有属性。</p>
+<h4 id="获取类中的成员变量"><a href="#获取类中的成员变量" class="headerlink" title="获取类中的成员变量"></a>获取类中的成员变量</h4><p>我们可以发现获取类中的方法，属性过程基本一致：通过元类获取方法列表或属性列表，然后在进行遍历。获取成员变量也一样：</p>
+<pre><code>id selfClass = [Calss class];
+unsigned int numIvars = 0;
+Ivar *ivars = class_copyIvarList(selfClass, &amp;numIvars);
+for(int i = 0; i &lt; numIvars; i++) {
+    Ivar ivar = ivars[i];
+    const char *ivarName = ivar_getName(ivar);
+    const char *ivarType = ivar_getTypeEncoding(ivar);// 获取类型
+
+    printf(&quot;ivarName:%s\n&quot;, ivarName);
+    printf(&quot;ivarType:%s\n------\n&quot;, ivarType);
+}
+</code></pre><pre><code>// 输出
+ivarName:_publicVar1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_publicVar2
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateVar1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateVar2
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_publicProperty1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_publicProperty2
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateProperty1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateProperty2
+ivarType:@
+</code></pre><p>可以发现输出了所有的成员变量，包括属性声明的 <code>_+属性名</code> 变量。</p>
+<h2 id="给分类添加属性"><a href="#给分类添加属性" class="headerlink" title="给分类添加属性"></a>给分类添加属性</h2><hr>
+<p>众所周知，分类中是不能声明属性的。</p>
+<p>我们创建一个 <code>CalssA</code> 的分类 <code>ClassA+CategoryA</code> ,在 <code>ClassA+CategoryA</code> 中添加一个属性 <code>name</code></p>
+<pre><code>#import &quot;ClassA.h&quot;
+
+@interface ClassA (CategoryA)
+
+@property (nonatomic, strong) NSString *name;
+
+@end
+
+</code></pre><p>若在我们调用<code>CalssA</code>分类的<code>name</code> 将会crash，原因是分类中使用 <code>@property</code> 声明属性并不会生成<code>setter</code>和<code>getter</code>方法,但是我们会想，我们可以自己实现呀，没错，看下面的代码</p>
+<pre><code>#import &quot;ClassA+CategoryA.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+@implementation ClassA (CategoryA)
+
+- (NSString *)name {
+    return name;
+}
+
+- (void)setName:(NSString *)name {
+    _name = name;
+}
+
+@end
+</code></pre><p>这里会报编译错误，因为分类中使用 <code>@property</code> 声明属性也不会生成成员变量 _name，并且手动声明也不行</p>
+<p><img src="http://ww1.sinaimg.cn/large/7853084cgw1f9zsknx42yj20fw033gm0.jpg" alt></p>
+<p>编译错误，提示实例变量无法添加到分类中，用正常的方法确实无法在分类中添加属性。</p>
+<p>但是可以通过Runtim机制进行“添加”。其本质是给这个类添加属性关联，而非把这个属性添加到类中。</p>
+<pre><code>#import &quot;ClassA+CategoryA.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+
+@implementation ClassA (CategoryA)
+
+- (NSString *)name {
+    return objc_getAssociatedObject(self, @selector(name));
+}
+
+- (void)setName:(NSString *)name {
+    objc_setAssociatedObject(self, @selector(name), name, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+@end
+</code></pre><p>调用：</p>
+<pre><code>classA.name = @&quot;邱帅&quot;;
+NSLog(@&quot;%@&quot;,classA.name);
+
+// 输出
+2016-11-21 16:18:48.084 UseRuntime[4392:1325037] 邱帅
+</code></pre><p>可以看出添加属性成功！</p>
+<p>我们来看看关联属性的这几个方法：</p>
+<pre><code>OBJC_EXPORT void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy)
+    OBJC_AVAILABLE(10.6, 3.1, 9.0, 1.0);
+
+OBJC_EXPORT id objc_getAssociatedObject(id object, const void *key)
+    OBJC_AVAILABLE(10.6, 3.1, 9.0, 1.0);
+
+OBJC_EXPORT void objc_removeAssociatedObjects(id object)
+    OBJC_AVAILABLE(10.6, 3.1, 9.0, 1.0);
+
+</code></pre><p><code>objc_setAssociatedObject()</code> 方法为关联属性，参数如下：</p>
+<ul>
+<li><code>object</code>：属性关联的源对象，这里使用了<code>self</code>，代表关联本类的对象</li>
+<li><code>key</code>:区分属性的唯一标识，因为关联的属性可能不止一个，我们使用了<code>- (NSString *)name</code>方法的<code>SEL</code> <code>@selector(name)</code>作为唯一标示，当然也可以用下面的方法来生成Key :</li>
+</ul>
+<pre><code>//利用静态变量地址唯一不变的特性
+1、static void *strKey = &amp;strKey;
+
+2、static NSString *strKey = @&quot;strKey&quot;;
+
+3、static char strKey;
+</code></pre><ul>
+<li><code>value</code>：关联的属性值</li>
+<li><code>policy</code>：设置关联对象的<code>copy</code>、<code>story</code>、<code>nonatomic</code>等参数:</li>
+</ul>
+<p>这些常量对应着引用关联值的政策，也就是 Objc 内存管理的引用计数机制。</p>
+<pre><code>typedef OBJC_ENUM(uintptr_t, objc_AssociationPolicy) {
+    OBJC_ASSOCIATION_ASSIGN = 0,
+    OBJC_ASSOCIATION_RETAIN_NONATOMIC = 1,
+    OBJC_ASSOCIATION_COPY_NONATOMIC = 3,
+    OBJC_ASSOCIATION_RETAIN = 01401,
+    OBJC_ASSOCIATION_COPY = 01403
+};
+</code></pre><p><code>objc_getAssociatedObject()</code> 方法通过 <code>object</code> 与 <code>Key</code> 直接获取关联的属性值</p>
+<p><code>objc_removeAssociatedObjects()</code> 移除关联</p>
+<p>我们使用上面的获取类中属性和成员变量的方法，发现输出：</p>
+<pre><code>// 有属性输出
+propertyName：name
+propertyAttributes:T@&quot;NSString&quot;,&amp;,N
+</code></pre><p>没有成员变量 <code>_name</code>，进一步说明分类中不能添加成员变量！其本质是添加属性与分类之间关联。</p>
+<h2 id="更换代码实现方法（Method-Swizzling）"><a href="#更换代码实现方法（Method-Swizzling）" class="headerlink" title="更换代码实现方法（Method Swizzling）"></a>更换代码实现方法（Method Swizzling）</h2><hr>
+<p>在<a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener">上篇</a>中详细介绍了<code>Method Swizzling</code>的原理，其本质是更换了 <code>selector</code> 的 <code>IMP</code> 。</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &lt;objc/runtime.h&gt;
+#import &quot;ClassA.h&quot;
+#import &quot;ClassB.h&quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
++ (void)load {
+    Method classA_method = class_getInstanceMethod([ClassA class], @selector(methodAOfClassAWithArg:));
+    Method classB_method = class_getInstanceMethod([ClassB class], @selector(methodAOfClassBWithArg:));
+    method_exchangeImplementations(classA_method, classB_method);
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [classA methodAOfClassAWithArg:@&quot;classA 发出的 A方法&quot;];
+    [classB methodAOfClassBWithArg:@&quot;classB 发出的 A方法&quot;];
+}
+
+// 输出
+
+2016-11-22 13:07:15.151 UseRuntime[1015:533335]  methodAOfClassB arg = classA 发出的 A方法
+2016-11-22 13:07:15.151 UseRuntime[1015:533335]  methodAOfClassA arg = classB 发出的 A方法
+</code></pre><p>首先交换方法写在 <code>+(void)load</code>,在程序的一开始就调用执行，你将不会碰到并发问题。</p>
+<p>我们可以发现两个方法的实现过程以及对换。</p>
+<p>当然，平时使用我们并不会这么做，当我们要在系统提供的方法上再扩充功能时(不能重写系统方法)，就可以使用<code>Method Swizzling</code>.</p>
+<p>我们给<code>NSArray</code>添加一个分类<code>AddLog</code>,给 <code>arrayByAddingObject:</code>方法添加一个输出方法：</p>
+<pre><code>#import &quot;NSArray+AddLog.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+@implementation NSArray (AddLog)
+
++ (void)load {
+
+    SEL ori_selector = @selector(arrayByAddingObject:);
+    SEL my_selector = @selector(my_arrayByAddingObject:);
+
+    Method ori_method = class_getInstanceMethod([NSArray class], ori_selector);
+    Method my_method  = class_getInstanceMethod([NSArray class], my_selector);
+
+    if (([NSArray class], ori_selector, method_getImplementation(my_method), method_getTypeEncoding(my_method))) {
+
+        class_replaceMethod([NSArray class], my_selector, method_getImplementation(ori_method), method_getTypeEncoding(ori_method));
+
+    } else {
+        method_exchangeImplementations(ori_method, my_method);
+    }
+
+}
+
+- (NSArray *)my_arrayByAddingObject:(id)anObject {
+
+    NSArray *array = [self my_arrayByAddingObject:anObject];
+    NSLog(@&quot;添加了一个元素 %@&quot;, anObject);
+    return array;
+}
+
+@end
+
+</code></pre><p>我们来看看这三个方法：</p>
+<ul>
+<li><code>class_addMethod()</code>：给一个方法添加新的方法和实现</li>
+<li><code>class_replaceMethod(）</code>：取代了对于一个给定的类的实现方法</li>
+<li><code>method_exchangeImplementations(）</code>：交换两个类的实现方法</li>
+</ul>
+<p>这里我们先使用 <code>class_addMethod()</code> 在类中添加方法，若返回Yes说明类中没有该方法，然后再使用 <code>class_replaceMethod()</code> 方法进行取代;若返回NO，说明类中有该方法，使用<code>method_exchangeImplementations()</code>直接交换两者的 <code>IMP</code>.</p>
+<p>其实在这里直接使用<code>method_exchangeImplementations()</code>进行交换就可以了。因为类中必定有<code>arrayByAddingObject：</code>方法。</p>
+<p>我给我们自己的方法命名为<code>my_arrayByAddingObject:</code>,在原来的方法名上加上前缀，既可以防止命名冲突，又方便阅读，在我们<code>my_arrayByAddingObject:</code>方法中调用本身</p>
+<pre><code>NSArray *array = [self my_arrayByAddingObject:anObject];
+</code></pre><p>看似会陷入递归调用，其实则不会，因为我们已经在<code>+ (void)load</code>方法中更换了<code>IMP</code>,他会调用<code>arrayByAddingObject:</code>方法，然后在后面添加我们需要添加的功能。</p>
+<p><code>arrayByAddingObject:</code>方法的调用不变；</p>
+<pre><code>NSArray *arr1 = @[@&quot;one&quot;, @&quot;two&quot;];
+NSArray *arr2 = [arr1 arrayByAddingObject:@&quot;three&quot;];
+NSLog(@&quot;arr2 = %@&quot;, arr2);
+</code></pre><pre><code>// 输出
+2016-11-22 13:57:00.021 UseRuntime[1147:743449] 添加了一个元素 three
+2016-11-22 13:57:00.021 UseRuntime[1147:743449] arr2 = (
+    one,
+    two,
+    three
+)
+</code></pre><h2 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h2><p>动态添加方法就是在消息转发前在<code>+ (BOOL)resolveInstanceMethod:(SEL)sel</code>方法中使用<code>class_addMethod()</code> 添加方法。</p>
+<p>下面我面添加一个名为<code>resolveThisMethodDynamically</code>的方法：</p>
+<pre><code>void dynamicMethodIMP(id self, SEL _cmd) {
+    // implementation ....
+    printf(&quot;执行了dynamicMethodIMP!!!!&quot;);
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+
+    if (sel == @selector(resolveThisMethodDynamically)) {
+        class_addMethod([self class], sel, (IMP) dynamicMethodIMP, &quot;v@:&quot;);
+        return YES;
+    }
+    return [super resolveInstanceMethod:sel];
+}
+</code></pre><p>调用：</p>
+<pre><code>performSelector:@selector(resolveThisMethodDynamically)];
+
+// 输出
+执行了dynamicMethodIMP!!!!
+</code></pre><p>对于上面添加的的方法 <code>resolveThisMethodDynamically</code> ，使用 <code>[self performSelector:@selector(resolveThisMethodDynamically)]</code> 进行调用，不能使用<code>[self resolveThisMethodDynamically]</code>,因为压根就没有声明 <code>-(void)resolveThisMethodDynamically</code>,会报编译错误。</p>
+<p>整个过程就是，<code>performSelector:</code>调用<code>resolveThisMethodDynamically</code>方法，然后在列表中找不到（因为类中根本就没有注册该方法），然后跳入 <code>+ (BOOL)resolveInstanceMethod:</code> 中，我们再为<code>resolveThisMethodDynamically</code>方法添加具体实现。</p>
+<h2 id="字典转属性"><a href="#字典转属性" class="headerlink" title="字典转属性"></a>字典转属性</h2><p>将字典转化为模型，是在我们iOS开发中最为常用的技能。iOS的模型框架如<code>JSONModel</code>,<code>MJExtension</code>,<code>MJExtension</code>等皆是利用了runtime，将字典转为模型，不过兼顾的细节更多。下面我们来实现一个简易的字典转模型框架。</p>
+<p>先上代码：</p>
+<pre><code>#import &quot;NSObject+BYModel.h&quot;
+#import &lt;objc/runtime.h&gt;
+#import &lt;objc/message.h&gt;
+
+@implementation NSObject (BYModel)
+
+- (void)by_modelSetDictionary:(NSDictionary *)dic {
+
+    Class cls = [self class];
+
+    // 遍历本类和父类的变量
+    while (cls) {
+        //获取所有成员变量
+        unsigned int outCount = 0;
+        Ivar *ivars = class_copyIvarList(cls, &amp;outCount);
+
+        for (int i = 0; i &lt; outCount; i++) {
+            Ivar ivar = ivars[i];
+
+            // 获取变量名
+            NSMutableString *ivar_Name = [NSMutableString stringWithUTF8String:ivar_getName(ivar)];
+
+            [ivar_Name replaceCharactersInRange:NSMakeRange(0, 1) withString:@&quot;&quot;];// _ivar -&gt; ivar
+
+            //
+            NSString *key = [ivar_Name copy];
+            if ([key isEqualToString:@&quot;dece&quot;]) {
+                key = @&quot;description&quot;;
+            }
+            if ([key isEqualToString:@&quot;ID&quot;]) {
+                key = @&quot;id&quot;;
+            }
+
+            id value = dic[key];
+            if (!value) continue;
+
+            // 拼接SEL    ivar -&gt; setIvar:
+
+            NSString *cap = [ivar_Name substringToIndex:1];
+            cap = cap.uppercaseString; // a-&gt;A
+            [ivar_Name replaceCharactersInRange:NSMakeRange(0, 1) withString:cap];
+            [ivar_Name insertString:@&quot;set&quot; atIndex:0];
+            [ivar_Name appendString:@&quot;:&quot;];
+
+            SEL selector = NSSelectorFromString(ivar_Name);
+
+            // 判断类型并发送消息
+            NSString *type = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)];
+
+            if ([type hasPrefix:@&quot;@&quot;]) { // 对象类型
+                objc_msgSend(self, selector, value);
+            } else { // 非对象类型
+                if ([type isEqualToString:@&quot;d&quot;]) {
+                    objc_msgSend(self, selector, [value doubleValue]);
+                } else if ([type isEqualToString:@&quot;f&quot;]) {
+                    objc_msgSend(self, selector, [value floatValue]);
+                } else if ([type isEqualToString:@&quot;i&quot;]) {
+                    objc_msgSend(self, selector, [value intValue]);
+                } else {
+                    objc_msgSend(self, selector, [value longLongValue]);
+                }
+            }
+
+
+        }
+        // 获取父类进行遍历变量
+        cls = class_getSuperclass(cls);
+    }
+
+}
+
+</code></pre><p>这个这个段代码可能出现编译错误：</p>
+<p><img src="http://ww3.sinaimg.cn/large/7853084cgw1fa3b5fbvsqj20k001fjrn.jpg" alt></p>
+<p>解决办法很简单：</p>
+<p>将项目 Project -&gt; Build Settings -&gt; Enable strct checking of objc_msgSend Calls 设置为 <strong>NO</strong> 即可</p>
+<p><img src="http://ww1.sinaimg.cn/large/7853084cgw1fa3b6mm9h7j20oh0aj0v8.jpg" alt></p>
+<p>接下来我们创建一个模型类<code>Student</code></p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface Student : NSObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) int age;
+@property (nonatomic, assign) int idNumber;
+
+@end
+
+
+</code></pre><p>使用我们的转模型方法：</p>
+<pre><code>NSDictionary *dic = @{ @&quot;name&quot;:@&quot;邱帅&quot;, @&quot;age&quot;: @(23), @&quot;idNumber&quot;:@(1234567)};
+
+Student *stu = [Student new];
+[stu by_modelSetDictionary:dic];
+
+NSLog(@&quot;%@&quot;, [NSString stringWithFormat:@&quot;%@, %d, %d&quot;, stu.name, stu.age, stu.idNumber]);
+
+// 输出
+2016-11-24 15:32:46.351 Demo_字典转模型（Runtime）[2131:884627] 邱帅, 23, 1234567
+</code></pre><p>该方法先利用我们上面介绍的<code>class_copyIvarList()</code>获取类中的成员变量列表，然后进行遍历，拼接字符串<code>setIvar:</code>，最后调用<code>objc_msgSend()</code>直接发送设置变量的消息，完成属性的赋值。</p>
+<pre><code>while (cls) {
+
+    //code..
+
+ cls = class_getSuperclass(cls);
+}
+</code></pre><p>这个循环是则获取父类中的属性：当前类的属性遍历结束之后，指向父类，若父类存在则在继续遍历属性，否则就退出循环。</p>
+<p>当然，这个方法只是介绍了利用runtime进行字典转模型的原理,实际中还有很多需要考虑的细节，项目中我还是推荐使用像<a href="https://github.com/ibireme/YYModel" target="_blank" rel="noopener">YYModel</a>这些比较成熟而且安全的模型框架。</p>
+<p>关于快速字典转模型可以参考我写的一篇<a href="http://www.jianshu.com/p/b7d8cf650722" target="_blank" rel="noopener">《快速完成JSON\字典转模型 For YYModel》</a>。</p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">支援小编点噻  $_$！！！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://yoursite.com" class="b-link-green">张成的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2017/02/04/20162017/2016-11-18-objective-c-runtime-ji-ben-shi-yong/" class="b-link-green">Objective-C Runtime 基本使用</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'FoAoUvphmpdeetPbpxip1NYf-gzGzoHsz',
+        appKey: '4Y0wsTcEcIoUjAJhUQFqJnyz',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '说点什么吧'
+    });
+</script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2017/02/15/20162017/2017-02-15-git-zhi-ling-zheng-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Git指令整理">
+                        
+                        <span class="card-title">Git指令整理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+随便整理的一些自用的Git指令
+
+GitHub创建仓库提示代码echo &quot;# 项目名&quot; &gt;&gt; README.md
+git init
+git add README.md
+git commit -m &quot</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2017-02-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            BY
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Mac/" target="_blank">
+                        <span class="chip bg-color">Mac</span>
+                    </a>
+                    
+                    <a href="/tags/终端/" target="_blank">
+                        <span class="chip bg-color">终端</span>
+                    </a>
+                    
+                    <a href="/tags/Git/" target="_blank">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2017/01/06/20162017/2016-01-06-reactivecocoa-jin-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="ReactiveCocoa 进阶">
+                        
+                        <span class="card-title">ReactiveCocoa 进阶</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">前言
+在上篇文章中介绍了ReactiveCocoa的基础知识,接下来我们来深入介绍ReactiveCocoa及其在MVVM中的用法。
+
+
+常见操作方法介绍操作须知所有的信号（RACSignal）都可以进行操作处理，因为所有操作方法都定义在R</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2017-01-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            BY
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/iOS/" target="_blank">
+                        <span class="chip bg-color">iOS</span>
+                    </a>
+                    
+                    <a href="/tags/ReactiveCocoa/" target="_blank">
+                        <span class="chip bg-color">ReactiveCocoa</span>
+                    </a>
+                    
+                    <a href="/tags/函数式编程/" target="_blank">
+                        <span class="chip bg-color">函数式编程</span>
+                    </a>
+                    
+                    <a href="/tags/开源框架/" target="_blank">
+                        <span class="chip bg-color">开源框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 张成的博客<br />'
+            + '作者: Zhangcheng<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright © 2019 zhangcheng All Rights Reserved.
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">291.3k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+    <a href="https://weibo.com/u/6420410379?is_all=1" class="tooltipped" target="_blank" data-tooltip="我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+
+    <a href="mailto:2508723631@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2508723631" class="tooltipped" data-tooltip="QQ联系我: 2508723631" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+    <!--
+        Facebook: fa-facebook
+        Twitter: fa-twitter
+        Google-plus: fa-google-plus
+        Linkedin: fa-linkedin
+        Tumblr: fa-tumblr
+        Medium: fa-medium
+        Slack: fa-slack
+        新浪微博: fa-weibo
+        微信: fa-wechat
+     -->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

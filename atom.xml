@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>张成的博客</title>
+  
+  <subtitle>张成的博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-03-28T21:19:28.211Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Zhangcheng</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>总结HTML5 meat的标签</title>
+    <link href="http://yoursite.com/2019/03/29/qian-duan/html5/meta-biao-qian/"/>
+    <id>http://yoursite.com/2019/03/29/qian-duan/html5/meta-biao-qian/</id>
+    <published>2019-03-29T00:57:46.000Z</published>
+    <updated>2019-03-28T21:19:28.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;http://p1.pstatp.com/large/pgc-image/ffcc8494e14b41b8bc9aabbbcad96c1b&quot; alt=&quot;meat的标签&quot; title=&quot;meat的标签&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="html5" scheme="http://yoursite.com/tags/html5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/28/da-jian/kuai-su-she-zhi-ma-yun/"/>
+    <id>http://yoursite.com/2019/03/28/da-jian/kuai-su-she-zhi-ma-yun/</id>
+    <published>2019-03-28T13:14:36.928Z</published>
+    <updated>2019-03-28T13:14:41.336Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;快速设置— 如果你知道该怎么操作，直接使用下面的地址&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://gitee.com/zhangcheng0126/index.git&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>css和css3的一些属性方法</title>
+    <link href="http://yoursite.com/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/"/>
+    <id>http://yoursite.com/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/</id>
+    <published>2019-03-27T14:05:23.000Z</published>
+    <updated>2019-03-27T14:40:13.057Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.盒子绝对居中(第一种方法)&lt;br&gt;    position: absolute;&lt;br&gt;    top: 50%;&lt;br&gt;    margin-top:-100px;&lt;br&gt;    left: 50%;&lt;br&gt;    margin-left:
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Css" scheme="http://yoursite.com/tags/Css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript自定jQuery元素$获取元素的方式</title>
+    <link href="http://yoursite.com/2019/03/27/qian-duan/javascript/javascript-zi-ding-jquery-yuan-su-huo-qu-yuan-su-de-fang-shi/"/>
+    <id>http://yoursite.com/2019/03/27/qian-duan/javascript/javascript-zi-ding-jquery-yuan-su-huo-qu-yuan-su-de-fang-shi/</id>
+    <published>2019-03-27T14:02:23.000Z</published>
+    <updated>2019-03-27T14:06:25.271Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt;var $ = function(selector){
+    return document.querySelector(selector);
+}
+
+var box=$(&amp;#39;#box&amp;#39;),
+   
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ps注册表清除</title>
+    <link href="http://yoursite.com/2019/03/25/ps/p-zhu-ce-biao-qing-chu/"/>
+    <id>http://yoursite.com/2019/03/25/ps/p-zhu-ce-biao-qing-chu/</id>
+    <published>2019-03-25T09:16:38.000Z</published>
+    <updated>2019-03-25T09:49:00.829Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;ps注册表清除两种方法&quot;&gt;&lt;a href=&quot;#ps注册表清除两种方法&quot; class=&quot;headerlink&quot; title=&quot;ps注册表清除两种方法&quot;&gt;&lt;/a&gt;ps注册表清除两种方法&lt;/h1&gt;&lt;h2 id=&quot;方法一：&quot;&gt;&lt;a href=&quot;#方法一：&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="设计" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+      <category term="设计类" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E7%B1%BB/"/>
+    
+      <category term="ps" scheme="http://yoursite.com/tags/ps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/npm/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/npm/</id>
+    <published>2019-03-24T10:02:57.570Z</published>
+    <updated>2019-03-25T09:50:53.285Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;npm&quot;&gt;&lt;a href=&quot;#npm&quot; class=&quot;headerlink&quot; title=&quot;npm&quot;&gt;&lt;/a&gt;npm&lt;/h3&gt;&lt;p&gt;npm有两层含义：一层是node的开放式模块登记和管理系统，官网为&lt;a href=&quot;https://www.npmjs.com/&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/nodejs-jian-jie/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/nodejs-jian-jie/</id>
+    <published>2019-03-24T10:02:57.567Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;1-1-1-nodejs简介&quot;&gt;&lt;a href=&quot;#1-1-1-nodejs简介&quot; class=&quot;headerlink&quot; title=&quot;1.1.1 nodejs简介&quot;&gt;&lt;/a&gt;1.1.1
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/http-mo-kuai/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/http-mo-kuai/</id>
+    <published>2019-03-24T10:02:57.563Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;HTTP模块&quot;&gt;&lt;a href=&quot;#HTTP模块&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/es6/1-let-const-ming-ling/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/es6/1-let-const-ming-ling/</id>
+    <published>2019-03-24T10:02:57.558Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;let-amp-const命令&quot;&gt;&lt;a href=&quot;#let-amp-const命令&quot; class=&quot;headerlink&quot; title=&quot;let&amp;amp;const命令&quot;&gt;&lt;/a&gt;let&amp;amp;const命令&lt;/h3&gt;&lt;p&gt;ES6 中新增
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/readme/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/readme/</id>
+    <published>2019-03-24T10:02:57.552Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在 ECMAScript 中，引用类型是一种数据结构，用于将数据和功能组织在一起。新对象是使用 new 操作符后跟一个构造函数来创建的。&lt;/p&gt;
+&lt;pre class=&quot; language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-5-function-lei-xing/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-5-function-lei-xing/</id>
+    <published>2019-03-24T10:02:57.550Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Function类型&quot;&gt;&lt;a href=&quot;#Function类型&quot; class=&quot;headerlink&quot; title=&quot;Function类型&quot;&gt;&lt;/a&gt;Function类型&lt;/h3&gt;&lt;p&gt;函数实际上是对象，每个函数都是 Function
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-4-regexp-lei-xing/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-4-regexp-lei-xing/</id>
+    <published>2019-03-24T10:02:57.546Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;RegExp类型&quot;&gt;&lt;a href=&quot;#RegExp类型&quot; class=&quot;headerlink&quot; title=&quot;RegExp类型&quot;&gt;&lt;/a&gt;RegExp类型&lt;/h3&gt;&lt;p&gt;ECMAScript 通过 RegExp 类型来支持正则表达式。&lt;/p&gt;
+&lt;h4
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-3-date-lei-xing/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-3-date-lei-xing/</id>
+    <published>2019-03-24T10:02:57.544Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Date类型&quot;&gt;&lt;a href=&quot;#Date类型&quot; class=&quot;headerlink&quot; title=&quot;Date类型&quot;&gt;&lt;/a&gt;Date类型&lt;/h3&gt;&lt;p&gt;ECMAScript 中的 Date 类型使用 UTC 国际协调时间，用从 1970年 1月
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-2-array-lei-xing/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-2-array-lei-xing/</id>
+    <published>2019-03-24T10:02:57.542Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Array类型&quot;&gt;&lt;a href=&quot;#Array类型&quot; class=&quot;headerlink&quot; title=&quot;Array类型&quot;&gt;&lt;/a&gt;Array类型&lt;/h3&gt;&lt;p&gt;ECMAScript
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-1-object-lei-xing/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-1-object-lei-xing/</id>
+    <published>2019-03-24T10:02:57.539Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Object类型&quot;&gt;&lt;a href=&quot;#Object类型&quot; class=&quot;headerlink&quot; title=&quot;Object类型&quot;&gt;&lt;/a&gt;Object类型&lt;/h3&gt;&lt;p&gt;ECMAScript 中所有对象都是 Object 的实例。创建 Object
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.5-shu-ju-lei-xing/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.5-shu-ju-lei-xing/</id>
+    <published>2019-03-24T10:02:57.519Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h3&gt;&lt;p&gt;ECMAScript 中有5中简单数据类型：&lt;strong&gt;Undefined、Null、Boolean、Number
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.4-bian-liang-he-zuo-yong-yu/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.4-bian-liang-he-zuo-yong-yu/</id>
+    <published>2019-03-24T10:02:57.517Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;变量和作用域&quot;&gt;&lt;a href=&quot;#变量和作用域&quot; class=&quot;headerlink&quot; title=&quot;变量和作用域&quot;&gt;&lt;/a&gt;变量和作用域&lt;/h3&gt;&lt;p&gt;ECMAScript
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.3-yu-ju/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.3-yu-ju/</id>
+    <published>2019-03-24T10:02:57.515Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;语句&quot;&gt;&lt;a href=&quot;#语句&quot; class=&quot;headerlink&quot; title=&quot;语句&quot;&gt;&lt;/a&gt;语句&lt;/h3&gt;&lt;p&gt;从本质上看，语句定义了 ECMAScript 中的主要语法，语句通常使用几个关键字来完成给定的任务。&lt;/p&gt;
+&lt;h4
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.2-cao-zuo-fu/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.2-cao-zuo-fu/</id>
+    <published>2019-03-24T10:02:57.512Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;操作符&quot;&gt;&lt;a href=&quot;#操作符&quot; class=&quot;headerlink&quot; title=&quot;操作符&quot;&gt;&lt;/a&gt;操作符&lt;/h3&gt;&lt;p&gt;操作符用来处理数据值。包括算数操作符（加号、减号等）、位操作符、关系操作符和相等操作符。&lt;/p&gt;
+&lt;h4
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.1-ji-ben-yu-fa/"/>
+    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.1-ji-ben-yu-fa/</id>
+    <published>2019-03-24T10:02:57.509Z</published>
+    <updated>2017-07-24T14:37:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;基本语法：&quot;&gt;&lt;a href=&quot;#基本语法：&quot; class=&quot;headerlink&quot; title=&quot;基本语法：&quot;&gt;&lt;/a&gt;基本语法：&lt;/h3&gt;&lt;h4 id=&quot;1-1-1-区分大小写&quot;&gt;&lt;a href=&quot;#1-1-1-区分大小写&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
