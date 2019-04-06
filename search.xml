@@ -462,11 +462,11 @@
     
     
     <entry>
-      <title>HTML  标准</title>
-      <link href="/2019/03/21/qian-duan/html/html/"/>
-      <url>/2019/03/21/qian-duan/html/html/</url>
+      <title>HTML 速查列表</title>
+      <link href="/2019/03/21/qian-duan/html/html-lie-biao/"/>
+      <url>/2019/03/21/qian-duan/html/html-lie-biao/</url>
       
-        <content type="html"><![CDATA[<h1 id="HTML-元素属性"><a href="#HTML-元素属性" class="headerlink" title="HTML 元素属性"></a>HTML 元素属性</h1><pre><code>  &lt;!DOCTYPE html&gt;| 声明为 HTML5 文档  &lt;html&gt;| 元素是 HTML 页面的根元素  &lt;head&gt;| 元素包含了文档的元（meta）数据，定义网页编码格式为 utf-8。  &lt;title&gt;| 元素描述了文档的标题  &lt;body&gt;| 元素包含了可见的页面内容  &lt;h1&gt;| 元素定义一个大标题  &lt;p&gt;| 元素定义一个段落  &lt;html&gt;|  定义 HTML 文档  &lt;body&gt;|  定义文档的主体  &lt;base&gt; | 定义了页面链接标签的默认链接地址  &lt;link&gt; | 定义了一个文档和外部资源之间的关系  &lt;meta&gt; | 定义了HTML文档中的元数据  &lt;script&gt; |   定义了客户端的脚本文件  &lt;style&gt; |定义了HTML文档的样式文件  &lt;h1&gt; ~ &lt;h6&gt;| 定义 HTML 标题  &lt;hr&gt;|    定义水平线  &lt;a&gt;|链接  &lt;div&gt; |  定义了文档的区域，块级 (block-level)  &lt;span&gt; | 用来组合文档中的行内元素， 内联元素(inline)  class |  为html元素定义一个或多个类名（classname）(类名从样式文件引入)  id  |定义元素的唯一id  style |  规定元素的行内样式（inline style）  title  | 描述了元素的额外信息 (作为工具条使用)  &lt;!--...--&gt;|  定义注释</code></pre><h2 id="HTML-文本格式化"><a href="#HTML-文本格式化" class="headerlink" title="HTML 文本格式化"></a>HTML 文本格式化</h2><pre><code>  &lt;b&gt; |定义粗体文本  &lt;em&gt; |   定义着重文字  &lt;i&gt; |定义斜体字  &lt;small&gt; |定义小号字  &lt;strong&gt; |   定义加重语气  &lt;sub&gt; |  定义下标字  &lt;sup&gt; |  定义上标字  &lt;ins&gt; |  定义插入字  &lt;del&gt; |  定义删除字</code></pre><h2 id="HTML-“计算机输出”-标签"><a href="#HTML-“计算机输出”-标签" class="headerlink" title="HTML “计算机输出” 标签"></a>HTML “计算机输出” 标签</h2><pre><code>  &lt;code&gt; | 定义计算机代码  &lt;kbd&gt; |  定义键盘码  &lt;samp&gt; | 定义计算机代码样本  &lt;var&gt; |  定义变量  &lt;pre&gt; |  定义预格式文本</code></pre><h2 id="HTML-引文-引用-及标签定义"><a href="#HTML-引文-引用-及标签定义" class="headerlink" title="HTML 引文, 引用, 及标签定义"></a>HTML 引文, 引用, 及标签定义</h2><pre><code>  &lt;abbr&gt; | 定义缩写  &lt;address&gt; |  定义地址  &lt;bdo&gt; |  定义文字方向  &lt;blockquote&gt; |   定义长的引用  &lt;q&gt; |定义短的引用语  &lt;cite&gt; | 定义引用、引证  &lt;dfn&gt; |  定义一个定义项目。</code></pre><h2 id="HTMLbase元素"><a href="#HTMLbase元素" class="headerlink" title="HTMLbase元素"></a>HTMLbase元素</h2><p>base标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接:</p><pre><code>  &lt;head&gt;  &lt;base href=&quot;  &quot; target=&quot;_blank&quot;&gt;  &lt;/head&gt;</code></pre><h2 id="HTMLlink元素"><a href="#HTMLlink元素" class="headerlink" title="HTMLlink元素"></a>HTMLlink元素</h2><p> 标签定义了文档与外部资源之间的关系。<br> 标签通常用于链接到样式表:</p><pre><code>```&lt;head&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;&lt;/head&gt;```</code></pre><h2 id="HTML-style元素"><a href="#HTML-style元素" class="headerlink" title="HTML style元素"></a>HTML style元素</h2><p>标签定义了HTML文档的样式文件引用地址.<br>元素中你也可以直接添加样式来渲染 HTML 文档:</p><pre><code>```&lt;head&gt;&lt;style type=&quot;text/css&quot;&gt;  body {background-color:yellow}  p {color:blue}&lt;/style&gt;&lt;/head&gt;```</code></pre><h2 id="HTML-meta元素"><a href="#HTML-meta元素" class="headerlink" title="HTML meta元素"></a>HTML meta元素</h2><p>meta标签描述了一些基本的元数据。<br>标签提供了元数据.元数据也不显示在页面上，但会被浏览器解析。<br>META 元素通常用于指定网页的描述，关键词，文件的最后修改时间，作者，和其他元数据。<br>元数据可以使用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他Web服务。</p><pre><code>meta标签- 使用实例---</code></pre><p>  为搜索引擎定义关键词:<br>  <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript"></p><p>  为网页定义描述内容:<br>  <meta name="description" content="免费 Web & 编程 教程"></p><p>  定义网页作者:<br>  <meta name="author" content="Runoob"></p><p>  每30秒钟刷新当前页面:<br>  <meta http-equiv="refresh" content="30"></p><p>  HTML <script> 元素<br>  <script>标签用于加载脚本文件，如： JavaScript。<br>  <script> 元素在以后的章节中会详细描述。</p><pre><code>HTML 图像- 设置图像的高度与宽度---height（高度） 与 width（宽度）属性用于设置图像的高度与宽度。属性值默认单位为像素:</code></pre><p>  <img src="pulpit.jpg" alt="Pulpit rock" width="304" height="228"><br>  <img>   定义图像<br>  <map>   定义图像地图<br>  <area>  定义图像地图中的可点击区域</p><p>  示例”创建图像映射”中的代码：<br>  <map name="planetmap"><br>    <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm"><br>    <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm"><br>    <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm"><br>  </map></p><p>  1、矩形：(左上角顶点坐标为(x1,y1)，右下角顶点坐标为(x2,y2))<br>  <area shape="rect" coords="x1,y1,x2,y2" href=url></p><p>  2、圆形：(圆心坐标为(X1,y1)，半径为r)<br>  <area shape="circle" coords="x1,y1,r" href=url></p><p>  3、多边形：(各顶点坐标依次为(x1,y1)、(x2,y2)、(x3,y3) ……)<br>  <area shape="poly" coords="x1,y1,x2,y2 ......" href=url></p><pre><code>HTML 表格----表格由 table 标签来定义。每个表格均有若干行（由 tr 标签定义），每行被分割为若干单元格（由 &lt;td&gt; 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。表格实例---  &lt;table border=&quot;1&quot;&gt;      &lt;tr&gt;          &lt;th colspan=&quot;2&quot;&gt;Telephone&lt;/th&gt;          &lt;td&gt;row 1, cell 1&lt;/td&gt;          &lt;td&gt;row 1, cell 2&lt;/td&gt;          &lt;td&gt;row 1, cell 2&lt;/td&gt;      &lt;/tr&gt;      &lt;tr&gt;          &lt;td&gt;row 2, cell 1&lt;/td&gt;          &lt;td&gt;row 2, cell 2&lt;/td&gt;          &lt;th rowspan=&quot;2&quot;&gt;Telephone:&lt;/th&gt;      &lt;/tr&gt;  &lt;/table&gt;HTML 表格标签---</code></pre><p>  <table> 定义表格<br>  <th>    定义表格的表头<br>  <tr>    定义表格的行<br>  <td>    定义表格单元<br>  <caption>   定义表格标题<br>  <colgroup>  定义表格列的组<br>  <col>   定义用于表格列的属性<br>  <thead> 定义表格的页眉<br>  <tbody> 定义表格的主体<br>  <tfoot> 定义表格的页脚<br>  <a href="https://c.runoob.com/codedemo/3187">https://c.runoob.com/codedemo/3187</a></p><p>  HTML 列表标签<br>  标签  描述<br>  <ol>    定义有序列表<br>  <ul>    定义无序列表<br>  <li>    定义列表项<br>  <dl>    定义列表<br>  <dt>    自定义列表项目<br>  <dd>    定义自定列表项的描述</p><pre><code>HTML 表单 - 输入元素---多数情况下被用到的表单标签是输入标签（&lt;input&gt;）。输入类型是由类型属性（type）定义的。大多数经常被用到的输入类型如下：</code></pre><p>  文本域（Text Fields）<br>  文本域通过<input type="text"> 标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域。<br>  <form><br>  First name: <input type="text" name="firstname"><br><br>  Last name: <input type="text" name="lastname"><br>  </form></p><h2 id="密码字段"><a href="#密码字段" class="headerlink" title="  密码字段-"></a>  密码字段-</h2><p>  密码字段通过标签<input type="password"> 来定义:</p>  <form><br>  Password: <input type="password" name="pwd"><br>  </form><h2 id="单选按钮（Radio-Buttons）"><a href="#单选按钮（Radio-Buttons）" class="headerlink" title="  单选按钮（Radio Buttons）"></a>  单选按钮（Radio Buttons）</h2><p>  <input type="radio"> 标签定义了表单单选框选项<br>  <form><br>  <input type="radio" name="sex" value="male">Male<br><br>  <input type="radio" name="sex" value="female">Female<br>  </form></p><h2 id="复选框（Checkboxes）"><a href="#复选框（Checkboxes）" class="headerlink" title="  复选框（Checkboxes）"></a>  复选框（Checkboxes）</h2><p>  <input type="checkbox"> 定义了复选框. 用户需要从若干给定的选择中选取一个或若干选项。<br>  <form><br>  <input type="checkbox" name="vehicle" value="Bike">I have a bike<br><br>  <input type="checkbox" name="vehicle" value="Car">I have a car<br>  </form></p><h2 id="提交按钮-Submit-Button"><a href="#提交按钮-Submit-Button" class="headerlink" title="  提交按钮(Submit Button)"></a>  提交按钮(Submit Button)</h2><p>  <input type="submit"> 定义了提交按钮.</p><p>  当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。:</p>  <form name="input" action="html_form_action.php" method="get"><br>  Username: <input type="text" name="user"><br>  <input type="submit" value="Submit"><br>  </form><p>  <form action=""><br>      <select name="cars"><br>          <option value="volvo">Volvo</option><br>          <option value="saab">Saab</option><br>          <option value="fiat">Fiat</option><br>          <option value="audi">Audi</option><br>      </select><br>  </form><br>  <textarea rows="10" cols="30"><br>  我是一个文本框。<br>  </textarea><br>  <form action=""><br>  <fieldset><br>  <legend>Personal information:</legend><br>  Name: <input type="text" size="30"><br><br>  E-mail: <input type="text" size="30"><br><br>  Date of birth: <input type="text" size="10"><br>  </fieldset><br>  </form><br>  <code>`</code></p><h2 id="HTML-表单标签"><a href="#HTML-表单标签" class="headerlink" title="HTML 表单标签"></a>HTML 表单标签</h2><p>  <form>  定义供用户输入的表单<br>  <input> 定义输入域<br>  <textarea>  定义文本域 (一个多行的输入控件)<br>  <label> 定义了 <input> 元素的标签，一般为输入标题<br>  <fieldset>  定义了一组相关的表单元素，并使用外框包含起来<br>  <legend>    定义了 <fieldset> 元素的标题<br>  <select>    定义了下拉选项列表<br>  <optgroup>  定义选项组<br>  <option>    定义下拉列表中的选项<br>  <button>    定义一个点击按钮<br>  <datalist>   指定一个预先定义的输入控件选项列表<br>  <keygen> 定义了表单的密钥对生成器字段<br>  <output> 定义一个计算结果</p><h2 id="HTML-框架"><a href="#HTML-框架" class="headerlink" title="HTML 框架"></a>HTML 框架</h2><p>Iframe - 设置高度与宽度<br>height 和 width 属性用来定义iframe标签的高度与宽度。</p><p>属性默认以像素为单位, 但是你可以指定其按比例显示 (如：”80%”)。</p><p>实例</p>  <iframe src="demo_iframe.htm" width="200" height="200"></iframe><p>尝试一下 »</p><p>Iframe - 移除边框<br>frameborder 属性用于定义iframe表示是否显示边框。</p><p>设置属性值为 “0” 移除iframe的边框:</p><p>实例</p>  <iframe src="demo_iframe.htm" frameborder="0"></iframe><p>使用iframe来显示目标链接页面<br>iframe可以显示一个目标链接的页面</p><p>目标链接的属性必须使用iframe的属性，如下实例:</p><p>实例</p><p>  <iframe src="demo_iframe.htm" name="iframe_a"></iframe><br>  <p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p></p></script></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="HTML-速查列表"><a href="#HTML-速查列表" class="headerlink" title="HTML 速查列表"></a>HTML 速查列表</h1><p><a href="https://www.lanzous.com/i3lo13c" target="_blank" rel="noopener">https://www.lanzous.com/i3lo13c</a><br>密码:990126</p><h2 id="HTML-基本文档"><a href="#HTML-基本文档" class="headerlink" title="HTML 基本文档"></a>HTML 基本文档</h2><pre><code>  &lt;!DOCTYPE html&gt;  &lt;html&gt;  &lt;head&gt;  &lt;title&gt;文档标题&lt;/title&gt;  &lt;/head&gt;  &lt;body&gt;  可见文本...  &lt;/body&gt;  &lt;/html&gt;</code></pre><h2 id="基本标签（Basic-Tags）"><a href="#基本标签（Basic-Tags）" class="headerlink" title="基本标签（Basic Tags）"></a>基本标签（Basic Tags）</h2><pre><code>  &lt;h1&gt;最大的标题&lt;/h1&gt;  &lt;h2&gt; . . . &lt;/h2&gt;  &lt;h3&gt; . . . &lt;/h3&gt;  &lt;h4&gt; . . . &lt;/h4&gt;  &lt;h5&gt; . . . &lt;/h5&gt;  &lt;h6&gt;最小的标题&lt;/h6&gt;  &lt;p&gt;这是一个段落。&lt;/p&gt;  &lt;br&gt; （换行）  &lt;hr&gt; （水平线）  &lt;!-- 这是注释 --&gt;</code></pre><h2 id="文本格式化（Formatting）"><a href="#文本格式化（Formatting）" class="headerlink" title="文本格式化（Formatting）"></a>文本格式化（Formatting）</h2><pre><code>  &lt;b&gt;粗体文本&lt;/b&gt;  &lt;code&gt;计算机代码&lt;/code&gt;  &lt;em&gt;强调文本&lt;/em&gt;  &lt;i&gt;斜体文本&lt;/i&gt;  &lt;kbd&gt;键盘输入&lt;/kbd&gt;  &lt;pre&gt;预格式化文本&lt;/pre&gt;  &lt;small&gt;更小的文本&lt;/small&gt;  &lt;strong&gt;重要的文本&lt;/strong&gt;  &lt;abbr&gt; （缩写）  &lt;address&gt; （联系信息）  &lt;bdo&gt; （文字方向）  &lt;blockquote&gt; （从另一个源引用的部分）  &lt;cite&gt; （工作的名称）  &lt;del&gt; （删除的文本）  &lt;ins&gt; （插入的文本）  &lt;sub&gt; （下标文本）  &lt;sup&gt; （上标文本）</code></pre><h2 id="链接（Links）"><a href="#链接（Links）" class="headerlink" title="链接（Links）"></a>链接（Links）</h2><pre><code>  普通的链接：&lt;a href=&quot;http://www.example.com/&quot;&gt;链接文本&lt;/a&gt;  图像链接： &lt;a href=&quot;http://www.example.com/&quot;&gt;&lt;img src=&quot;URL&quot; alt=&quot;替换文本&quot;&gt;&lt;/a&gt;  邮件链接： &lt;a href=&quot;mailto:webmaster@example.com&quot;&gt;发送e-mail&lt;/a&gt;</code></pre><h2 id="书签："><a href="#书签：" class="headerlink" title="书签："></a>书签：</h2><pre><code>  &lt;a id=&quot;tips&quot;&gt;提示部分&lt;/a&gt;  &lt;a href=&quot;#tips&quot;&gt;跳到提示部分&lt;/a&gt;</code></pre><h2 id="图片（Images）"><a href="#图片（Images）" class="headerlink" title="图片（Images）"></a>图片（Images）</h2><pre><code>  &lt;img src=&quot;URL&quot; alt=&quot;替换文本&quot; height=&quot;42&quot; width=&quot;42&quot;&gt;</code></pre><h2 id="样式-区块（Styles-Sections）"><a href="#样式-区块（Styles-Sections）" class="headerlink" title="样式/区块（Styles/Sections）"></a>样式/区块（Styles/Sections）</h2><pre><code>  &lt;style type=&quot;text/css&quot;&gt;  h1 {color:red;}  p {color:blue;}  &lt;/style&gt;  &lt;div&gt;文档中的块级元素&lt;/div&gt;  &lt;span&gt;文档中的内联元素&lt;/span&gt;</code></pre><h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><pre><code>  &lt;ul&gt;      &lt;li&gt;项目&lt;/li&gt;      &lt;li&gt;项目&lt;/li&gt;  &lt;/ul&gt;</code></pre><h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><pre><code>  &lt;ol&gt;      &lt;li&gt;第一项&lt;/li&gt;      &lt;li&gt;第二项&lt;/li&gt;  &lt;/ol&gt;</code></pre><h2 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h2><pre><code>  &lt;dl&gt;    &lt;dt&gt;项目 1&lt;/dt&gt;      &lt;dd&gt;描述项目 1&lt;/dd&gt;    &lt;dt&gt;项目 2&lt;/dt&gt;      &lt;dd&gt;描述项目 2&lt;/dd&gt;  &lt;/dl&gt;</code></pre><h2 id="表格（Tables）"><a href="#表格（Tables）" class="headerlink" title="表格（Tables）"></a>表格（Tables）</h2><pre><code>  &lt;table border=&quot;1&quot;&gt;    &lt;tr&gt;      &lt;th&gt;表格标题&lt;/th&gt;      &lt;th&gt;表格标题&lt;/th&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td&gt;表格数据&lt;/td&gt;      &lt;td&gt;表格数据&lt;/td&gt;    &lt;/tr&gt;  &lt;/table&gt;</code></pre><h2 id="框架（Iframe）"><a href="#框架（Iframe）" class="headerlink" title="框架（Iframe）"></a>框架（Iframe）</h2><pre><code>  &lt;iframe src=&quot;demo_iframe.htm&quot;&gt;&lt;/iframe&gt;</code></pre><h2 id="表单（Forms）"><a href="#表单（Forms）" class="headerlink" title="表单（Forms）"></a>表单（Forms）</h2><pre><code>  &lt;form action=&quot;demo_form.php&quot; method=&quot;post/get&quot;&gt;    &lt;input type=&quot;text&quot; name=&quot;email&quot; size=&quot;40&quot; maxlength=&quot;50&quot;&gt;    &lt;input type=&quot;password&quot;&gt;    &lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot;&gt;    &lt;input type=&quot;radio&quot; checked=&quot;checked&quot;&gt;    &lt;input type=&quot;submit&quot; value=&quot;Send&quot;&gt;    &lt;input type=&quot;reset&quot;&gt;    &lt;input type=&quot;hidden&quot;&gt;  &lt;select&gt;    &lt;option&gt;苹果&lt;/option&gt;    &lt;option selected=&quot;selected&quot;&gt;香蕉&lt;/option&gt;    &lt;option&gt;樱桃&lt;/option&gt;  &lt;/select&gt;  &lt;textarea name=&quot;comment&quot; rows=&quot;60&quot; cols=&quot;20&quot;&gt;&lt;/textarea&gt;  &lt;/form&gt;</code></pre><h2 id="实体（Entities）"><a href="#实体（Entities）" class="headerlink" title="实体（Entities）"></a>实体（Entities）</h2><pre><code>  &amp;lt; 等同于 &lt;  &amp;gt; 等同于 &gt;  &amp;#169; 等同于 ©</code></pre>]]></content>
       
       
       <categories>
@@ -487,11 +487,11 @@
     
     
     <entry>
-      <title>HTML 速查列表</title>
-      <link href="/2019/03/21/qian-duan/html/html-lie-biao/"/>
-      <url>/2019/03/21/qian-duan/html/html-lie-biao/</url>
+      <title>HTML  标准</title>
+      <link href="/2019/03/21/qian-duan/html/html/"/>
+      <url>/2019/03/21/qian-duan/html/html/</url>
       
-        <content type="html"><![CDATA[<h1 id="HTML-速查列表"><a href="#HTML-速查列表" class="headerlink" title="HTML 速查列表"></a>HTML 速查列表</h1><p><a href="https://www.lanzous.com/i3lo13c" target="_blank" rel="noopener">https://www.lanzous.com/i3lo13c</a><br>密码:990126</p><h2 id="HTML-基本文档"><a href="#HTML-基本文档" class="headerlink" title="HTML 基本文档"></a>HTML 基本文档</h2><pre><code>  &lt;!DOCTYPE html&gt;  &lt;html&gt;  &lt;head&gt;  &lt;title&gt;文档标题&lt;/title&gt;  &lt;/head&gt;  &lt;body&gt;  可见文本...  &lt;/body&gt;  &lt;/html&gt;</code></pre><h2 id="基本标签（Basic-Tags）"><a href="#基本标签（Basic-Tags）" class="headerlink" title="基本标签（Basic Tags）"></a>基本标签（Basic Tags）</h2><pre><code>  &lt;h1&gt;最大的标题&lt;/h1&gt;  &lt;h2&gt; . . . &lt;/h2&gt;  &lt;h3&gt; . . . &lt;/h3&gt;  &lt;h4&gt; . . . &lt;/h4&gt;  &lt;h5&gt; . . . &lt;/h5&gt;  &lt;h6&gt;最小的标题&lt;/h6&gt;  &lt;p&gt;这是一个段落。&lt;/p&gt;  &lt;br&gt; （换行）  &lt;hr&gt; （水平线）  &lt;!-- 这是注释 --&gt;</code></pre><h2 id="文本格式化（Formatting）"><a href="#文本格式化（Formatting）" class="headerlink" title="文本格式化（Formatting）"></a>文本格式化（Formatting）</h2><pre><code>  &lt;b&gt;粗体文本&lt;/b&gt;  &lt;code&gt;计算机代码&lt;/code&gt;  &lt;em&gt;强调文本&lt;/em&gt;  &lt;i&gt;斜体文本&lt;/i&gt;  &lt;kbd&gt;键盘输入&lt;/kbd&gt;  &lt;pre&gt;预格式化文本&lt;/pre&gt;  &lt;small&gt;更小的文本&lt;/small&gt;  &lt;strong&gt;重要的文本&lt;/strong&gt;  &lt;abbr&gt; （缩写）  &lt;address&gt; （联系信息）  &lt;bdo&gt; （文字方向）  &lt;blockquote&gt; （从另一个源引用的部分）  &lt;cite&gt; （工作的名称）  &lt;del&gt; （删除的文本）  &lt;ins&gt; （插入的文本）  &lt;sub&gt; （下标文本）  &lt;sup&gt; （上标文本）</code></pre><h2 id="链接（Links）"><a href="#链接（Links）" class="headerlink" title="链接（Links）"></a>链接（Links）</h2><pre><code>  普通的链接：&lt;a href=&quot;http://www.example.com/&quot;&gt;链接文本&lt;/a&gt;  图像链接： &lt;a href=&quot;http://www.example.com/&quot;&gt;&lt;img src=&quot;URL&quot; alt=&quot;替换文本&quot;&gt;&lt;/a&gt;  邮件链接： &lt;a href=&quot;mailto:webmaster@example.com&quot;&gt;发送e-mail&lt;/a&gt;</code></pre><h2 id="书签："><a href="#书签：" class="headerlink" title="书签："></a>书签：</h2><pre><code>  &lt;a id=&quot;tips&quot;&gt;提示部分&lt;/a&gt;  &lt;a href=&quot;#tips&quot;&gt;跳到提示部分&lt;/a&gt;</code></pre><h2 id="图片（Images）"><a href="#图片（Images）" class="headerlink" title="图片（Images）"></a>图片（Images）</h2><pre><code>  &lt;img src=&quot;URL&quot; alt=&quot;替换文本&quot; height=&quot;42&quot; width=&quot;42&quot;&gt;</code></pre><h2 id="样式-区块（Styles-Sections）"><a href="#样式-区块（Styles-Sections）" class="headerlink" title="样式/区块（Styles/Sections）"></a>样式/区块（Styles/Sections）</h2><pre><code>  &lt;style type=&quot;text/css&quot;&gt;  h1 {color:red;}  p {color:blue;}  &lt;/style&gt;  &lt;div&gt;文档中的块级元素&lt;/div&gt;  &lt;span&gt;文档中的内联元素&lt;/span&gt;</code></pre><h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><pre><code>  &lt;ul&gt;      &lt;li&gt;项目&lt;/li&gt;      &lt;li&gt;项目&lt;/li&gt;  &lt;/ul&gt;</code></pre><h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><pre><code>  &lt;ol&gt;      &lt;li&gt;第一项&lt;/li&gt;      &lt;li&gt;第二项&lt;/li&gt;  &lt;/ol&gt;</code></pre><h2 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h2><pre><code>  &lt;dl&gt;    &lt;dt&gt;项目 1&lt;/dt&gt;      &lt;dd&gt;描述项目 1&lt;/dd&gt;    &lt;dt&gt;项目 2&lt;/dt&gt;      &lt;dd&gt;描述项目 2&lt;/dd&gt;  &lt;/dl&gt;</code></pre><h2 id="表格（Tables）"><a href="#表格（Tables）" class="headerlink" title="表格（Tables）"></a>表格（Tables）</h2><pre><code>  &lt;table border=&quot;1&quot;&gt;    &lt;tr&gt;      &lt;th&gt;表格标题&lt;/th&gt;      &lt;th&gt;表格标题&lt;/th&gt;    &lt;/tr&gt;    &lt;tr&gt;      &lt;td&gt;表格数据&lt;/td&gt;      &lt;td&gt;表格数据&lt;/td&gt;    &lt;/tr&gt;  &lt;/table&gt;</code></pre><h2 id="框架（Iframe）"><a href="#框架（Iframe）" class="headerlink" title="框架（Iframe）"></a>框架（Iframe）</h2><pre><code>  &lt;iframe src=&quot;demo_iframe.htm&quot;&gt;&lt;/iframe&gt;</code></pre><h2 id="表单（Forms）"><a href="#表单（Forms）" class="headerlink" title="表单（Forms）"></a>表单（Forms）</h2><pre><code>  &lt;form action=&quot;demo_form.php&quot; method=&quot;post/get&quot;&gt;    &lt;input type=&quot;text&quot; name=&quot;email&quot; size=&quot;40&quot; maxlength=&quot;50&quot;&gt;    &lt;input type=&quot;password&quot;&gt;    &lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot;&gt;    &lt;input type=&quot;radio&quot; checked=&quot;checked&quot;&gt;    &lt;input type=&quot;submit&quot; value=&quot;Send&quot;&gt;    &lt;input type=&quot;reset&quot;&gt;    &lt;input type=&quot;hidden&quot;&gt;  &lt;select&gt;    &lt;option&gt;苹果&lt;/option&gt;    &lt;option selected=&quot;selected&quot;&gt;香蕉&lt;/option&gt;    &lt;option&gt;樱桃&lt;/option&gt;  &lt;/select&gt;  &lt;textarea name=&quot;comment&quot; rows=&quot;60&quot; cols=&quot;20&quot;&gt;&lt;/textarea&gt;  &lt;/form&gt;</code></pre><h2 id="实体（Entities）"><a href="#实体（Entities）" class="headerlink" title="实体（Entities）"></a>实体（Entities）</h2><pre><code>  &amp;lt; 等同于 &lt;  &amp;gt; 等同于 &gt;  &amp;#169; 等同于 ©</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="HTML-元素属性"><a href="#HTML-元素属性" class="headerlink" title="HTML 元素属性"></a>HTML 元素属性</h1><pre><code>  &lt;!DOCTYPE html&gt;| 声明为 HTML5 文档  &lt;html&gt;| 元素是 HTML 页面的根元素  &lt;head&gt;| 元素包含了文档的元（meta）数据，定义网页编码格式为 utf-8。  &lt;title&gt;| 元素描述了文档的标题  &lt;body&gt;| 元素包含了可见的页面内容  &lt;h1&gt;| 元素定义一个大标题  &lt;p&gt;| 元素定义一个段落  &lt;html&gt;|  定义 HTML 文档  &lt;body&gt;|  定义文档的主体  &lt;base&gt; | 定义了页面链接标签的默认链接地址  &lt;link&gt; | 定义了一个文档和外部资源之间的关系  &lt;meta&gt; | 定义了HTML文档中的元数据  &lt;script&gt; |   定义了客户端的脚本文件  &lt;style&gt; |定义了HTML文档的样式文件  &lt;h1&gt; ~ &lt;h6&gt;| 定义 HTML 标题  &lt;hr&gt;|    定义水平线  &lt;a&gt;|链接  &lt;div&gt; |  定义了文档的区域，块级 (block-level)  &lt;span&gt; | 用来组合文档中的行内元素， 内联元素(inline)  class |  为html元素定义一个或多个类名（classname）(类名从样式文件引入)  id  |定义元素的唯一id  style |  规定元素的行内样式（inline style）  title  | 描述了元素的额外信息 (作为工具条使用)  &lt;!--...--&gt;|  定义注释</code></pre><h2 id="HTML-文本格式化"><a href="#HTML-文本格式化" class="headerlink" title="HTML 文本格式化"></a>HTML 文本格式化</h2><pre><code>  &lt;b&gt; |定义粗体文本  &lt;em&gt; |   定义着重文字  &lt;i&gt; |定义斜体字  &lt;small&gt; |定义小号字  &lt;strong&gt; |   定义加重语气  &lt;sub&gt; |  定义下标字  &lt;sup&gt; |  定义上标字  &lt;ins&gt; |  定义插入字  &lt;del&gt; |  定义删除字</code></pre><h2 id="HTML-“计算机输出”-标签"><a href="#HTML-“计算机输出”-标签" class="headerlink" title="HTML “计算机输出” 标签"></a>HTML “计算机输出” 标签</h2><pre><code>  &lt;code&gt; | 定义计算机代码  &lt;kbd&gt; |  定义键盘码  &lt;samp&gt; | 定义计算机代码样本  &lt;var&gt; |  定义变量  &lt;pre&gt; |  定义预格式文本</code></pre><h2 id="HTML-引文-引用-及标签定义"><a href="#HTML-引文-引用-及标签定义" class="headerlink" title="HTML 引文, 引用, 及标签定义"></a>HTML 引文, 引用, 及标签定义</h2><pre><code>  &lt;abbr&gt; | 定义缩写  &lt;address&gt; |  定义地址  &lt;bdo&gt; |  定义文字方向  &lt;blockquote&gt; |   定义长的引用  &lt;q&gt; |定义短的引用语  &lt;cite&gt; | 定义引用、引证  &lt;dfn&gt; |  定义一个定义项目。</code></pre><h2 id="HTMLbase元素"><a href="#HTMLbase元素" class="headerlink" title="HTMLbase元素"></a>HTMLbase元素</h2><p>base标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接:</p><pre><code>  &lt;head&gt;  &lt;base href=&quot;  &quot; target=&quot;_blank&quot;&gt;  &lt;/head&gt;</code></pre><h2 id="HTMLlink元素"><a href="#HTMLlink元素" class="headerlink" title="HTMLlink元素"></a>HTMLlink元素</h2><p> 标签定义了文档与外部资源之间的关系。<br> 标签通常用于链接到样式表:</p><pre><code>```&lt;head&gt;&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;&lt;/head&gt;```</code></pre><h2 id="HTML-style元素"><a href="#HTML-style元素" class="headerlink" title="HTML style元素"></a>HTML style元素</h2><p>标签定义了HTML文档的样式文件引用地址.<br>元素中你也可以直接添加样式来渲染 HTML 文档:</p><pre><code>```&lt;head&gt;&lt;style type=&quot;text/css&quot;&gt;  body {background-color:yellow}  p {color:blue}&lt;/style&gt;&lt;/head&gt;```</code></pre><h2 id="HTML-meta元素"><a href="#HTML-meta元素" class="headerlink" title="HTML meta元素"></a>HTML meta元素</h2><p>meta标签描述了一些基本的元数据。<br>标签提供了元数据.元数据也不显示在页面上，但会被浏览器解析。<br>META 元素通常用于指定网页的描述，关键词，文件的最后修改时间，作者，和其他元数据。<br>元数据可以使用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他Web服务。</p><pre><code>meta标签- 使用实例---</code></pre><p>  为搜索引擎定义关键词:<br>  <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript"></p><p>  为网页定义描述内容:<br>  <meta name="description" content="免费 Web & 编程 教程"></p><p>  定义网页作者:<br>  <meta name="author" content="Runoob"></p><p>  每30秒钟刷新当前页面:<br>  <meta http-equiv="refresh" content="30"></p><p>  HTML <script> 元素<br>  <script>标签用于加载脚本文件，如： JavaScript。<br>  <script> 元素在以后的章节中会详细描述。</p><pre><code>HTML 图像- 设置图像的高度与宽度---height（高度） 与 width（宽度）属性用于设置图像的高度与宽度。属性值默认单位为像素:</code></pre><p>  <img src="pulpit.jpg" alt="Pulpit rock" width="304" height="228"><br>  <img>   定义图像<br>  <map>   定义图像地图<br>  <area>  定义图像地图中的可点击区域</p><p>  示例”创建图像映射”中的代码：<br>  <map name="planetmap"><br>    <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm"><br>    <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm"><br>    <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm"><br>  </map></p><p>  1、矩形：(左上角顶点坐标为(x1,y1)，右下角顶点坐标为(x2,y2))<br>  <area shape="rect" coords="x1,y1,x2,y2" href=url></p><p>  2、圆形：(圆心坐标为(X1,y1)，半径为r)<br>  <area shape="circle" coords="x1,y1,r" href=url></p><p>  3、多边形：(各顶点坐标依次为(x1,y1)、(x2,y2)、(x3,y3) ……)<br>  <area shape="poly" coords="x1,y1,x2,y2 ......" href=url></p><pre><code>HTML 表格----表格由 table 标签来定义。每个表格均有若干行（由 tr 标签定义），每行被分割为若干单元格（由 &lt;td&gt; 标签定义）。字母 td 指表格数据（table data），即数据单元格的内容。数据单元格可以包含文本、图片、列表、段落、表单、水平线、表格等等。表格实例---  &lt;table border=&quot;1&quot;&gt;      &lt;tr&gt;          &lt;th colspan=&quot;2&quot;&gt;Telephone&lt;/th&gt;          &lt;td&gt;row 1, cell 1&lt;/td&gt;          &lt;td&gt;row 1, cell 2&lt;/td&gt;          &lt;td&gt;row 1, cell 2&lt;/td&gt;      &lt;/tr&gt;      &lt;tr&gt;          &lt;td&gt;row 2, cell 1&lt;/td&gt;          &lt;td&gt;row 2, cell 2&lt;/td&gt;          &lt;th rowspan=&quot;2&quot;&gt;Telephone:&lt;/th&gt;      &lt;/tr&gt;  &lt;/table&gt;HTML 表格标签---</code></pre><p>  <table> 定义表格<br>  <th>    定义表格的表头<br>  <tr>    定义表格的行<br>  <td>    定义表格单元<br>  <caption>   定义表格标题<br>  <colgroup>  定义表格列的组<br>  <col>   定义用于表格列的属性<br>  <thead> 定义表格的页眉<br>  <tbody> 定义表格的主体<br>  <tfoot> 定义表格的页脚<br>  <a href="https://c.runoob.com/codedemo/3187">https://c.runoob.com/codedemo/3187</a></p><p>  HTML 列表标签<br>  标签  描述<br>  <ol>    定义有序列表<br>  <ul>    定义无序列表<br>  <li>    定义列表项<br>  <dl>    定义列表<br>  <dt>    自定义列表项目<br>  <dd>    定义自定列表项的描述</p><pre><code>HTML 表单 - 输入元素---多数情况下被用到的表单标签是输入标签（&lt;input&gt;）。输入类型是由类型属性（type）定义的。大多数经常被用到的输入类型如下：</code></pre><p>  文本域（Text Fields）<br>  文本域通过<input type="text"> 标签来设定，当用户要在表单中键入字母、数字等内容时，就会用到文本域。<br>  <form><br>  First name: <input type="text" name="firstname"><br><br>  Last name: <input type="text" name="lastname"><br>  </form></p><h2 id="密码字段"><a href="#密码字段" class="headerlink" title="  密码字段-"></a>  密码字段-</h2><p>  密码字段通过标签<input type="password"> 来定义:</p>  <form><br>  Password: <input type="password" name="pwd"><br>  </form><h2 id="单选按钮（Radio-Buttons）"><a href="#单选按钮（Radio-Buttons）" class="headerlink" title="  单选按钮（Radio Buttons）"></a>  单选按钮（Radio Buttons）</h2><p>  <input type="radio"> 标签定义了表单单选框选项<br>  <form><br>  <input type="radio" name="sex" value="male">Male<br><br>  <input type="radio" name="sex" value="female">Female<br>  </form></p><h2 id="复选框（Checkboxes）"><a href="#复选框（Checkboxes）" class="headerlink" title="  复选框（Checkboxes）"></a>  复选框（Checkboxes）</h2><p>  <input type="checkbox"> 定义了复选框. 用户需要从若干给定的选择中选取一个或若干选项。<br>  <form><br>  <input type="checkbox" name="vehicle" value="Bike">I have a bike<br><br>  <input type="checkbox" name="vehicle" value="Car">I have a car<br>  </form></p><h2 id="提交按钮-Submit-Button"><a href="#提交按钮-Submit-Button" class="headerlink" title="  提交按钮(Submit Button)"></a>  提交按钮(Submit Button)</h2><p>  <input type="submit"> 定义了提交按钮.</p><p>  当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。:</p>  <form name="input" action="html_form_action.php" method="get"><br>  Username: <input type="text" name="user"><br>  <input type="submit" value="Submit"><br>  </form><p>  <form action=""><br>      <select name="cars"><br>          <option value="volvo">Volvo</option><br>          <option value="saab">Saab</option><br>          <option value="fiat">Fiat</option><br>          <option value="audi">Audi</option><br>      </select><br>  </form><br>  <textarea rows="10" cols="30"><br>  我是一个文本框。<br>  </textarea><br>  <form action=""><br>  <fieldset><br>  <legend>Personal information:</legend><br>  Name: <input type="text" size="30"><br><br>  E-mail: <input type="text" size="30"><br><br>  Date of birth: <input type="text" size="10"><br>  </fieldset><br>  </form><br>  <code>`</code></p><h2 id="HTML-表单标签"><a href="#HTML-表单标签" class="headerlink" title="HTML 表单标签"></a>HTML 表单标签</h2><p>  <form>  定义供用户输入的表单<br>  <input> 定义输入域<br>  <textarea>  定义文本域 (一个多行的输入控件)<br>  <label> 定义了 <input> 元素的标签，一般为输入标题<br>  <fieldset>  定义了一组相关的表单元素，并使用外框包含起来<br>  <legend>    定义了 <fieldset> 元素的标题<br>  <select>    定义了下拉选项列表<br>  <optgroup>  定义选项组<br>  <option>    定义下拉列表中的选项<br>  <button>    定义一个点击按钮<br>  <datalist>   指定一个预先定义的输入控件选项列表<br>  <keygen> 定义了表单的密钥对生成器字段<br>  <output> 定义一个计算结果</p><h2 id="HTML-框架"><a href="#HTML-框架" class="headerlink" title="HTML 框架"></a>HTML 框架</h2><p>Iframe - 设置高度与宽度<br>height 和 width 属性用来定义iframe标签的高度与宽度。</p><p>属性默认以像素为单位, 但是你可以指定其按比例显示 (如：”80%”)。</p><p>实例</p>  <iframe src="demo_iframe.htm" width="200" height="200"></iframe><p>尝试一下 »</p><p>Iframe - 移除边框<br>frameborder 属性用于定义iframe表示是否显示边框。</p><p>设置属性值为 “0” 移除iframe的边框:</p><p>实例</p>  <iframe src="demo_iframe.htm" frameborder="0"></iframe><p>使用iframe来显示目标链接页面<br>iframe可以显示一个目标链接的页面</p><p>目标链接的属性必须使用iframe的属性，如下实例:</p><p>实例</p><p>  <iframe src="demo_iframe.htm" name="iframe_a"></iframe><br>  <p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p></p></script></p>]]></content>
       
       
       <categories>
@@ -763,9 +763,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -790,9 +790,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1156,9 +1156,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1208,9 +1208,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1368,9 +1368,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1395,9 +1395,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1422,9 +1422,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1449,9 +1449,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1505,9 +1505,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1867,9 +1867,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -1894,9 +1894,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -2002,9 +2002,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -2029,9 +2029,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
@@ -2056,9 +2056,9 @@
       
         <tags>
             
-            <tag> 设计模式 </tag>
-            
             <tag> Java </tag>
+            
+            <tag> 设计模式 </tag>
             
         </tags>
       
