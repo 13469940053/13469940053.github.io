@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-03T16:01:54.973Z</updated>
+  <updated>2019-04-06T17:05:27.905Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>php入门第一天.md</title>
     <link href="http://yoursite.com/2019/04/03/hou-duan/php/ru-men-di-yi-tian/"/>
     <id>http://yoursite.com/2019/04/03/hou-duan/php/ru-men-di-yi-tian/</id>
-    <published>2019-04-03T15:42:51.385Z</published>
-    <updated>2019-04-03T16:01:54.973Z</updated>
+    <published>2019-04-03T15:42:55.000Z</published>
+    <updated>2019-04-06T17:05:27.905Z</updated>
     
     <summary type="html">
     
@@ -29,16 +29,17 @@
       
         
         
-          &lt;hr&gt;
-&lt;p&gt;入门第一天.md&lt;/p&gt;
-&lt;p&gt;集成化PHP环境安装&lt;/p&gt;
-&lt;p&gt;2019-04-03 23:42:55&lt;/p&gt;
-&lt;p&gt;PHPnow&lt;br&gt;WampServer    推荐&lt;br&gt;XAMPP 
+          &lt;p&gt;集成化PHP环境安装&lt;/p&gt;
+&lt;p&gt;PHPnow&lt;br&gt;WampServer    推荐&lt;br&gt;XAMPP  在Windows、Linux、Solaris三种操作系统下安装使用&lt;br&gt;shopEx&lt;br&gt;APMServ
         
       
     
     </summary>
     
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
   </entry>
   
@@ -206,11 +207,11 @@
   </entry>
   
   <entry>
-    <title>JavaScript自定jQuery元素$获取元素的方式</title>
+    <title>JavaScript自定的元素</title>
     <link href="http://yoursite.com/2019/03/27/qian-duan/javascript/javascript-zi-ding-jquery-yuan-su-huo-qu-yuan-su-de-fang-shi/"/>
     <id>http://yoursite.com/2019/03/27/qian-duan/javascript/javascript-zi-ding-jquery-yuan-su-huo-qu-yuan-su-de-fang-shi/</id>
     <published>2019-03-27T14:02:23.000Z</published>
-    <updated>2019-03-27T14:06:25.271Z</updated>
+    <updated>2019-04-06T16:53:07.477Z</updated>
     
     <summary type="html">
     
@@ -218,12 +219,8 @@
       
         
         
-          &lt;pre&gt;&lt;code&gt;var $ = function(selector){
-    return document.querySelector(selector);
-}
-
-var box=$(&amp;#39;#box&amp;#39;),
-   
+          &lt;blockquote&gt;
+&lt;p&gt;1.JavaScript自定jQuery元素$获取元素的方式&lt;br&gt;    var $ = function(selector){&lt;br&gt;        return document.querySelector(selector);&lt;br&gt;  
         
       
     
@@ -265,11 +262,11 @@ var box=$(&amp;#39;#box&amp;#39;),
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/npm/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/npm/</id>
-    <published>2019-03-24T10:02:57.570Z</published>
-    <updated>2019-03-25T09:50:53.285Z</updated>
+    <title>HTML 速查列表</title>
+    <link href="http://yoursite.com/2019/03/21/qian-duan/html/html-lie-biao/"/>
+    <id>http://yoursite.com/2019/03/21/qian-duan/html/html-lie-biao/</id>
+    <published>2019-03-21T12:15:00.000Z</published>
+    <updated>2019-03-29T18:36:36.734Z</updated>
     
     <summary type="html">
     
@@ -277,21 +274,25 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;npm&quot;&gt;&lt;a href=&quot;#npm&quot; class=&quot;headerlink&quot; title=&quot;npm&quot;&gt;&lt;/a&gt;npm&lt;/h3&gt;&lt;p&gt;npm有两层含义：一层是node的开放式模块登记和管理系统，官网为&lt;a href=&quot;https://www.npmjs.com/&quot;
+          &lt;h1 id=&quot;HTML-速查列表&quot;&gt;&lt;a href=&quot;#HTML-速查列表&quot; class=&quot;headerlink&quot; title=&quot;HTML 速查列表&quot;&gt;&lt;/a&gt;HTML 速查列表&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://www.lanzous.com/i3lo13c&quot;
         
       
     
     </summary>
     
+      <category term="html" scheme="http://yoursite.com/categories/html/"/>
+    
+    
+      <category term="html" scheme="http://yoursite.com/tags/html/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/nodejs-jian-jie/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/nodejs-jian-jie/</id>
-    <published>2019-03-24T10:02:57.567Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>HTML  标准</title>
+    <link href="http://yoursite.com/2019/03/21/qian-duan/html/html/"/>
+    <id>http://yoursite.com/2019/03/21/qian-duan/html/html/</id>
+    <published>2019-03-21T12:15:00.000Z</published>
+    <updated>2019-03-21T19:04:31.625Z</updated>
     
     <summary type="html">
     
@@ -299,21 +300,25 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;1-1-1-nodejs简介&quot;&gt;&lt;a href=&quot;#1-1-1-nodejs简介&quot; class=&quot;headerlink&quot; title=&quot;1.1.1 nodejs简介&quot;&gt;&lt;/a&gt;1.1.1
+          &lt;h1 id=&quot;HTML-元素属性&quot;&gt;&lt;a href=&quot;#HTML-元素属性&quot; class=&quot;headerlink&quot; title=&quot;HTML 元素属性&quot;&gt;&lt;/a&gt;HTML 元素属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;  &amp;lt;!DOCTYPE html&amp;gt;| 声明为
         
       
     
     </summary>
     
+      <category term="html" scheme="http://yoursite.com/categories/html/"/>
+    
+    
+      <category term="html" scheme="http://yoursite.com/tags/html/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/http-mo-kuai/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/nodejs/http-mo-kuai/</id>
-    <published>2019-03-24T10:02:57.563Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>hexo-theme-matery &lt;span style=&#39;color:yellow;font-weight:bold;&#39;&gt;[加密]&lt;/span&gt;</title>
+    <link href="http://yoursite.com/2019/03/20/da-jian/readme/"/>
+    <id>http://yoursite.com/2019/03/20/da-jian/readme/</id>
+    <published>2019-03-20T12:32:14.000Z</published>
+    <updated>2019-03-29T18:24:27.221Z</updated>
     
     <summary type="html">
     
@@ -321,21 +326,25 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;HTTP模块&quot;&gt;&lt;a href=&quot;#HTTP模块&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;&lt;a href=&quot;README.md&quot;&gt;English Document&lt;/a&gt; | &lt;a href=&quot;https://blinkfox.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;演示示例&lt;/a&gt;
         
       
     
     </summary>
     
+      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+    
+    
+      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/es6/1-let-const-ming-ling/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/es6/1-let-const-ming-ling/</id>
-    <published>2019-03-24T10:02:57.558Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>ps快捷键</title>
+    <link href="http://yoursite.com/2019/03/16/ps/ps-kuai-jie-jian/"/>
+    <id>http://yoursite.com/2019/03/16/ps/ps-kuai-jie-jian/</id>
+    <published>2019-03-16T10:16:38.000Z</published>
+    <updated>2019-03-25T09:24:30.608Z</updated>
     
     <summary type="html">
     
@@ -343,21 +352,27 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;let-amp-const命令&quot;&gt;&lt;a href=&quot;#let-amp-const命令&quot; class=&quot;headerlink&quot; title=&quot;let&amp;amp;const命令&quot;&gt;&lt;/a&gt;let&amp;amp;const命令&lt;/h3&gt;&lt;p&gt;ES6 中新增
+          &lt;h4 id=&quot;推荐个在线编辑图片的photopea-功能和ps差不多-不用在电脑安装ps-在线就可以编辑图片-记得注册下哦！&quot;&gt;&lt;a href=&quot;#推荐个在线编辑图片的photopea-功能和ps差不多-不用在电脑安装ps-在线就可以编辑图片-记得注册下哦！&quot;
         
       
     
     </summary>
     
+      <category term="设计" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+      <category term="设计类" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E7%B1%BB/"/>
+    
+      <category term="ps" scheme="http://yoursite.com/tags/ps/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/readme/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/readme/</id>
-    <published>2019-03-24T10:02:57.552Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>域名绑定</title>
+    <link href="http://yoursite.com/2019/03/15/da-jian/yu-ming-bang-ding/"/>
+    <id>http://yoursite.com/2019/03/15/da-jian/yu-ming-bang-ding/</id>
+    <published>2019-03-15T14:46:11.000Z</published>
+    <updated>2019-03-16T10:28:46.821Z</updated>
     
     <summary type="html">
     
@@ -365,22 +380,27 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;p&gt;在 ECMAScript 中，引用类型是一种数据结构，用于将数据和功能组织在一起。新对象是使用 new 操作符后跟一个构造函数来创建的。&lt;/p&gt;
-&lt;pre class=&quot; language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span
+          &lt;p&gt;##1.第一种2情况&lt;br&gt;Your site is ready to be published at 域名&lt;/p&gt;
+&lt;p&gt;检查你的域名解析&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ping
         
       
     
     </summary>
     
+      <category term="搭建" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-5-function-lei-xing/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-5-function-lei-xing/</id>
-    <published>2019-03-24T10:02:57.550Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>页面介绍 &lt;span style=&#39;color:yellow;font-weight:bold;&#39;&gt;[加密]&lt;/span&gt;</title>
+    <link href="http://yoursite.com/2019/03/14/da-jian/zui-quan-shi-li/"/>
+    <id>http://yoursite.com/2019/03/14/da-jian/zui-quan-shi-li/</id>
+    <published>2019-03-14T12:32:14.000Z</published>
+    <updated>2019-03-24T11:10:26.531Z</updated>
     
     <summary type="html">
     
@@ -388,21 +408,25 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;Function类型&quot;&gt;&lt;a href=&quot;#Function类型&quot; class=&quot;headerlink&quot; title=&quot;Function类型&quot;&gt;&lt;/a&gt;Function类型&lt;/h3&gt;&lt;p&gt;函数实际上是对象，每个函数都是 Function
+          &lt;h1 id=&quot;Markdown语法规则&quot;&gt;&lt;a href=&quot;#Markdown语法规则&quot; class=&quot;headerlink&quot; title=&quot;Markdown语法规则&quot;&gt;&lt;/a&gt;Markdown语法规则&lt;/h1&gt;&lt;h2 id=&quot;一、斜体、粗体&quot;&gt;&lt;a
         
       
     
     </summary>
     
+      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
+    
+    
+      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-4-regexp-lei-xing/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-4-regexp-lei-xing/</id>
-    <published>2019-03-24T10:02:57.546Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>写作页面的创建！</title>
+    <link href="http://yoursite.com/2019/03/14/da-jian/xie-zuo-zuo/"/>
+    <id>http://yoursite.com/2019/03/14/da-jian/xie-zuo-zuo/</id>
+    <published>2019-03-14T06:15:01.000Z</published>
+    <updated>2019-03-29T08:08:51.827Z</updated>
     
     <summary type="html">
     
@@ -410,22 +434,25 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;RegExp类型&quot;&gt;&lt;a href=&quot;#RegExp类型&quot; class=&quot;headerlink&quot; title=&quot;RegExp类型&quot;&gt;&lt;/a&gt;RegExp类型&lt;/h3&gt;&lt;p&gt;ECMAScript 通过 RegExp 类型来支持正则表达式。&lt;/p&gt;
-&lt;h4
+          &lt;h2 id=&quot;这是测试页面&quot;&gt;&lt;a href=&quot;#这是测试页面&quot; class=&quot;headerlink&quot; title=&quot;这是测试页面&quot;&gt;&lt;/a&gt;这是测试页面&lt;/h2&gt;&lt;p&gt;&lt;code&gt;git config --global credential.helper
         
       
     
     </summary>
     
+      <category term="搭建" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-3-date-lei-xing/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-3-date-lei-xing/</id>
-    <published>2019-03-24T10:02:57.544Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>由系统自动生成的一篇文章</title>
+    <link href="http://yoursite.com/2019/03/13/da-jian/hello-world/"/>
+    <id>http://yoursite.com/2019/03/13/da-jian/hello-world/</id>
+    <published>2019-03-13T06:32:12.000Z</published>
+    <updated>2019-03-21T18:42:55.772Z</updated>
     
     <summary type="html">
     
@@ -433,21 +460,26 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;Date类型&quot;&gt;&lt;a href=&quot;#Date类型&quot; class=&quot;headerlink&quot; title=&quot;Date类型&quot;&gt;&lt;/a&gt;Date类型&lt;/h3&gt;&lt;p&gt;ECMAScript 中的 Date 类型使用 UTC 国际协调时间，用从 1970年 1月
+          &lt;p&gt;欢迎光临&lt;a href=&quot;https://13469940053.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;我的博客&lt;/a&gt;! 这是我的的第一篇文章。&lt;/p&gt;
+&lt;h2 id=&quot;快速启动&quot;&gt;&lt;a href=&quot;#快速启动&quot;
         
       
     
     </summary>
     
+      <category term="搭建" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-2-array-lei-xing/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-2-array-lei-xing/</id>
-    <published>2019-03-24T10:02:57.542Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>SpringBoot2.x 单元测试</title>
+    <link href="http://yoursite.com/2019/03/02/hou-duan/spring/springboot2.x-dan-yuan-ce-shi/"/>
+    <id>http://yoursite.com/2019/03/02/hou-duan/spring/springboot2.x-dan-yuan-ce-shi/</id>
+    <published>2019-03-02T09:20:00.000Z</published>
+    <updated>2019-03-24T11:16:23.145Z</updated>
     
     <summary type="html">
     
@@ -455,21 +487,34 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;Array类型&quot;&gt;&lt;a href=&quot;#Array类型&quot; class=&quot;headerlink&quot; title=&quot;Array类型&quot;&gt;&lt;/a&gt;Array类型&lt;/h3&gt;&lt;p&gt;ECMAScript
+          &lt;blockquote&gt;
+&lt;p&gt;一个 bug 被隐藏的时间越长，修复这个 bug 的代价就越大。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我曾经在 &lt;a
         
       
     
     </summary>
     
+      <category term="后端" scheme="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="单元测试" scheme="http://yoursite.com/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
+    
+      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-1-object-lei-xing/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/2-yin-yong-lei-xing/2-1-object-lei-xing/</id>
-    <published>2019-03-24T10:02:57.539Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>Java代码性能评估库Stalker介绍</title>
+    <link href="http://yoursite.com/2019/02/14/hou-duan/java/java-dai-ma-xing-neng-ping-gu-ku-stalker-jie-shao/"/>
+    <id>http://yoursite.com/2019/02/14/hou-duan/java/java-dai-ma-xing-neng-ping-gu-ku-stalker-jie-shao/</id>
+    <published>2019-02-14T04:00:00.000Z</published>
+    <updated>2019-03-24T11:06:04.034Z</updated>
     
     <summary type="html">
     
@@ -477,21 +522,27 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;Object类型&quot;&gt;&lt;a href=&quot;#Object类型&quot; class=&quot;headerlink&quot; title=&quot;Object类型&quot;&gt;&lt;/a&gt;Object类型&lt;/h3&gt;&lt;p&gt;ECMAScript 中所有对象都是 Object 的实例。创建 Object
+          &lt;p&gt;&lt;a href=&quot;https://github.com/blinkfox/stalker/blob/master/README.md&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;English
         
       
     
     </summary>
     
+      <category term="后端" scheme="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="性能测试" scheme="http://yoursite.com/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.5-shu-ju-lei-xing/"/>
-    <id>http://yoursite.com/2019/03/24/qian-duan/javascript/1-ji-ben-gai-nian/1.5-shu-ju-lei-xing/</id>
-    <published>2019-03-24T10:02:57.519Z</published>
-    <updated>2017-07-24T14:37:34.000Z</updated>
+    <title>一个极简的 Java ASCII 表格生成库</title>
+    <link href="http://yoursite.com/2019/01/25/hou-duan/java/yi-ge-ji-jian-de-java-ascii-biao-ge-sheng-cheng-ku/"/>
+    <id>http://yoursite.com/2019/01/25/hou-duan/java/yi-ge-ji-jian-de-java-ascii-biao-ge-sheng-cheng-ku/</id>
+    <published>2019-01-25T02:34:00.000Z</published>
+    <updated>2019-03-24T11:05:47.807Z</updated>
     
     <summary type="html">
     
@@ -499,12 +550,19 @@ var box=$(&amp;#39;#box&amp;#39;),
       
         
         
-          &lt;h3 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h3&gt;&lt;p&gt;ECMAScript 中有5中简单数据类型：&lt;strong&gt;Undefined、Null、Boolean、Number
+          &lt;blockquote&gt;
+&lt;p&gt;一个轻量级、零依赖的 Java ASCII 表格生成库。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
+      <category term="后端" scheme="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
   </entry>
   
