@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-29T18:23:46.039Z</updated>
+  <updated>2019-06-15T05:30:37.183Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>php的文件命令.md</title>
+    <link href="http://yoursite.com/2019/06/15/hou-duan/php/php-de-wen-jian-ming-ling/"/>
+    <id>http://yoursite.com/2019/06/15/hou-duan/php/php-de-wen-jian-ming-ling/</id>
+    <published>2019-06-15T05:28:31.000Z</published>
+    <updated>2019-06-15T05:30:37.183Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;`&lt;/code&gt; PHP&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+  $info = ob_get_contents(); // 这个是这个页面的所有信息
+  $filectime =
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -249,7 +278,7 @@
   </entry>
   
   <entry>
-    <title>javaweb 资料整理</title>
+    <title>Javaweb 资料整理</title>
     <link href="http://yoursite.com/2019/03/30/hou-duan/java/commons/zi-liao/"/>
     <id>http://yoursite.com/2019/03/30/hou-duan/java/commons/zi-liao/</id>
     <published>2019-03-30T06:46:00.000Z</published>
@@ -305,7 +334,7 @@
   </entry>
   
   <entry>
-    <title>总结HTML5 meat的标签</title>
+    <title>总结HTML5 Meat的标签</title>
     <link href="http://yoursite.com/2019/03/29/qian-duan/html5-css3/meta-biao-qian/"/>
     <id>http://yoursite.com/2019/03/29/qian-duan/html5-css3/meta-biao-qian/</id>
     <published>2019-03-29T00:57:46.000Z</published>
@@ -327,18 +356,18 @@
       <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="html5" scheme="http://yoursite.com/tags/html5/"/>
-    
       <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="html5" scheme="http://yoursite.com/tags/html5/"/>
     
   </entry>
   
   <entry>
-    <title>css和css3的一些属性方法</title>
-    <link href="http://yoursite.com/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/"/>
-    <id>http://yoursite.com/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/</id>
+    <title>CSS3新增选择器</title>
+    <link href="http://yoursite.com/2019/03/27/qian-duan/css/css3-xin-zeng-xuan-ze-qi/"/>
+    <id>http://yoursite.com/2019/03/27/qian-duan/css/css3-xin-zeng-xuan-ze-qi/</id>
     <published>2019-03-27T14:05:23.000Z</published>
-    <updated>2019-06-07T07:56:08.050Z</updated>
+    <updated>2019-06-26T08:03:45.947Z</updated>
     
     <summary type="html">
     
@@ -346,7 +375,38 @@
       
         
         
-          &lt;p&gt;1.盒子绝对居中(第一种方法)&lt;br&gt;    position: absolute;&lt;br&gt;    top: 50%;&lt;br&gt;    margin-top:-100px;&lt;br&gt;    left: 50%;&lt;br&gt;    margin-left:
+          &lt;section class=&quot;normal&quot; id=&quot;section-&quot;&gt;&lt;br&gt;&lt;br&gt;                        &lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="Css3" scheme="http://yoursite.com/tags/Css3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Css和css3的一些属性方法</title>
+    <link href="http://yoursite.com/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/"/>
+    <id>http://yoursite.com/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/</id>
+    <published>2019-03-27T14:05:23.000Z</published>
+    <updated>2019-06-26T08:01:32.534Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;CSS权重&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;CSS权重指的是样式的优先级，有两条或多条样式作用于一个元素，权重高的那条样式对元素起作用,权重相同的，后写的样式会覆盖前面写的样式。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;权重的等级&lt;br&gt;
         
       
     
@@ -387,7 +447,7 @@
   </entry>
   
   <entry>
-    <title>ps注册表清除</title>
+    <title>Ps注册表清除</title>
     <link href="http://yoursite.com/2019/03/25/ruan-jian-she-ji/ps/p-zhu-ce-biao-qing-chu/"/>
     <id>http://yoursite.com/2019/03/25/ruan-jian-she-ji/ps/p-zhu-ce-biao-qing-chu/</id>
     <published>2019-03-25T09:16:38.000Z</published>
@@ -467,7 +527,7 @@
   </entry>
   
   <entry>
-    <title>hexo-theme-matery &lt;span style=&#39;color:yellow;font-weight:bold;&#39;&gt;[加密]&lt;/span&gt;</title>
+    <title>Hexo-Theme-Matery &lt;Span Style=&#39;color:yellow;font-Weight:bold;&#39;&gt;[加密]&lt;/span&gt;</title>
     <link href="http://yoursite.com/2019/03/20/da-jian/readme/"/>
     <id>http://yoursite.com/2019/03/20/da-jian/readme/</id>
     <published>2019-03-20T12:32:14.000Z</published>
@@ -493,7 +553,7 @@
   </entry>
   
   <entry>
-    <title>ps快捷键</title>
+    <title>Ps快捷键</title>
     <link href="http://yoursite.com/2019/03/16/ruan-jian-she-ji/ps/ps-kuai-jie-jian/"/>
     <id>http://yoursite.com/2019/03/16/ruan-jian-she-ji/ps/ps-kuai-jie-jian/</id>
     <published>2019-03-16T10:16:38.000Z</published>
@@ -517,60 +577,6 @@
       <category term="设计类" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E7%B1%BB/"/>
     
       <category term="ps" scheme="http://yoursite.com/tags/ps/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>域名绑定</title>
-    <link href="http://yoursite.com/2019/03/15/da-jian/yu-ming-bang-ding/"/>
-    <id>http://yoursite.com/2019/03/15/da-jian/yu-ming-bang-ding/</id>
-    <published>2019-03-15T14:46:11.000Z</published>
-    <updated>2019-03-16T10:28:46.821Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;##1.第一种2情况&lt;br&gt;Your site is ready to be published at 域名&lt;/p&gt;
-&lt;p&gt;检查你的域名解析&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ping
-        
-      
-    
-    </summary>
-    
-      <category term="搭建" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA/"/>
-    
-    
-      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>页面介绍 &lt;span style=&#39;color:yellow;font-weight:bold;&#39;&gt;[加密]&lt;/span&gt;</title>
-    <link href="http://yoursite.com/2019/03/14/da-jian/zui-quan-shi-li/"/>
-    <id>http://yoursite.com/2019/03/14/da-jian/zui-quan-shi-li/</id>
-    <published>2019-03-14T12:32:14.000Z</published>
-    <updated>2019-03-24T11:10:26.531Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;Markdown语法规则&quot;&gt;&lt;a href=&quot;#Markdown语法规则&quot; class=&quot;headerlink&quot; title=&quot;Markdown语法规则&quot;&gt;&lt;/a&gt;Markdown语法规则&lt;/h1&gt;&lt;h2 id=&quot;一、斜体、粗体&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="Markdown" scheme="http://yoursite.com/categories/Markdown/"/>
-    
-    
-      <category term="设置" scheme="http://yoursite.com/tags/%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   

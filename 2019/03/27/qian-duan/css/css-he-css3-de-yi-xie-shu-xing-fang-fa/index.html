@@ -4,8 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="css和css3的一些属性方法, 无浪网、张成的博客、无风不起浪网、无浪博客">
-    <meta name="description" content="1.盒子绝对居中(第一种方法)    position: absolute;    top: 50%;    margin-top:-100px;    left: 50%;    margin-left: -100px;2.盒子绝对居中(">
+    <meta name="keywords" content="Css和css3的一些属性方法, 无浪网、张成的博客、无风不起浪网、无浪博客">
+    <meta name="description" content="
+CSS权重
+
+CSS权重指的是样式的优先级，有两条或多条样式作用于一个元素，权重高的那条样式对元素起作用,权重相同的，后写的样式会覆盖前面写的样式。
+
+权重的等级可以把样式的应用方式分为几个等级，按照等级来计算权重
+
+1、!importa">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>css和css3的一些属性方法 | 张成的博客</title>
+    <title>Css和css3的一些属性方法 | 张成的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -228,13 +235,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        css和css3的一些属性方法
+                        Css和css3的一些属性方法
                     </div>
                 </div>
             </div>
@@ -376,14 +383,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        301
+                        578
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -399,7 +406,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>1.盒子绝对居中(第一种方法)<br>    position: absolute;<br>    top: 50%;<br>    margin-top:-100px;<br>    left: 50%;<br>    margin-left: -100px;<br>2.盒子绝对居中(第二种方法)<br>    position: absolute;<br>    top: 0;bottom: 0;left:0 ;right:0 ;<br>    margin: auto;<br>3.盒子绝对居中(第三种方法)<br>    html,body{height: 100%;}<br>    body{display: flex;}或者flex改为grid。<br>    __{ width: 200px; height: 200px;margin: auto;}</p>
+                <blockquote>
+<p>CSS权重</p>
+</blockquote>
+<p>CSS权重指的是样式的优先级，有两条或多条样式作用于一个元素，权重高的那条样式对元素起作用,权重相同的，后写的样式会覆盖前面写的样式。</p>
+<blockquote>
+<p>权重的等级<br>可以把样式的应用方式分为几个等级，按照等级来计算权重</p>
+</blockquote>
+<p>1、!important，加在样式属性值后，权重值为 10000<br>2、内联样式，如：style=””，权重值为1000<br>3、ID选择器，如：#content，权重值为100<br>4、类，伪类和属性选择器，如： content、:hover 权重值为10<br>5、标签选择器和伪元素选择器，如：div、p、:before 权重值为1<br>6、通用选择器（*）、子选择器（&gt;）、相邻选择器（+）、同胞选择器（~）、权重值为0</p>
+<blockquote>
+<p>清除浮动</p>
+</blockquote>
+<p>父级上增加属性overflow：hidden<br>在最后一个子元素的后面加一个空的div，给它样式属性 clear:both（不推荐）<br>使用成熟的清浮动样式类，clearfix<br>.clearfix:after,.clearfix:before{ content: “”;display: table;}<br>.clearfix:after{ clear:both;}<br>.clearfix{zoom:1;}<br>清除浮动的使用方法：<br>.con2{… overflow:hidden}<br>或者<br>div class=”con2 clearfix”</p>
+<p>1.盒子绝对居中(第一种方法)<br>    position: absolute;<br>    top: 50%;<br>    margin-top:-100px;<br>    left: 50%;<br>    margin-left: -100px;<br>2.盒子绝对居中(第二种方法)<br>    position: absolute;<br>    top: 0;bottom: 0;left:0 ;right:0 ;<br>    margin: auto;<br>3.盒子绝对居中(第三种方法)<br>    html,body{height: 100%;}<br>    body{display: flex;}或者flex改为grid。<br>    __{ width: 200px; height: 200px;margin: auto;}</p>
 <p>4.定位布局<br>html,body{width:100% ;height:100%;position: relative;display:flex;justify-content:center;align-items:center;overflow:hidden;}</p>
 <pre><code> display: flex;
     justify-content:space-around;/*左右均分*/
@@ -559,7 +578,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">张成的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/" class="b-link-green">css和css3的一些属性方法</a>
+                    <a href="/2019/03/27/qian-duan/css/css-he-css3-de-yi-xie-shu-xing-fang-fa/" class="b-link-green">Css和css3的一些属性方法</a>
                 </p>
             </div>
         </div>
@@ -843,23 +862,20 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/03/29/qian-duan/html5-css3/meta-biao-qian/">
+                <a href="/2019/03/27/qian-duan/css/css3-xin-zeng-xuan-ze-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="总结HTML5 meat的标签">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="CSS3新增选择器">
                         
-                        <span class="card-title">总结HTML5 meat的标签</span>
+                        <span class="card-title">CSS3新增选择器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">
-一些常用的移动端的meta属性设置
-    &lt;!DOCTYPE html> &lt;!-- 使用 HTML5 doctype，不区分大小写 -->
-    &lt;html lang="zh-cmn-Hans"> &lt;!-- 更</div>
+                    <div class="summary">                        CSS3新增选择器1、E:nth-child(n)：匹配元素类型为E且是父元素的第n个子元素  &lt;style type=”text/css”&gt;    .list div:nth-c</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-29
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-27
                         </span>
                         <span class="publish-author">
                             
@@ -876,12 +892,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/html5/" target="_blank">
-                        <span class="chip bg-color">html5</span>
-                    </a>
-                    
-                    <a href="/tags/html/" target="_blank">
-                        <span class="chip bg-color">html</span>
+                    <a href="/tags/Css3/" target="_blank">
+                        <span class="chip bg-color">Css3</span>
                     </a>
                     
                 </div>
@@ -1083,7 +1095,7 @@ var</div>
             Copyright © 2019 zhangcheng All Rights Reserved.
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">295.4k</span>
+                <span class="white-color">296.4k</span>
             
 
             
@@ -1141,6 +1153,27 @@ var</div>
      -->
 </div>
     </div>
+    <!-- 音乐播放器
+2019-03-16 13:12:12
+无风不起浪_你的歌单分享「我喜欢的音乐」: http://music.163.com/playlist/2531704188/604884741/?userid=604884741 (来自@网易云音乐)
+-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<style>.aplayer-list-index,.aplayer-list-title,.aplayer-list-author,.aplayer .aplayer-lrc p{background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2), color-stop(0.85, #ff2), color-stop(1, #f22));
+    color: transparent;
+    -webkit-background-clip: text;
+    cursor: pointer;}
+    .aplayer .aplayer-lrc p {
+    font-size:16px;
+    transition: all .5s ease-out;
+    opacity: .4;
+    overflow: hidden;
+
+} </style>
+<div class="aplayer" data-id="2531704188" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-volume="0.9"></div>
+<script>var meting_api='http://api.mizore.cn/meting/api.php?server=:server&type=:type&id=:id'</script>
+<script src="http://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="http://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+<!-- end音乐播放器-->
 </footer>
 
 <div class="progress-bar"></div>
