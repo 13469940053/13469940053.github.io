@@ -1,0 +1,568 @@
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <title>简易music---网易云ApI</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/mdui/0.4.0/css/mdui.min.css">
+  <style>
+    .mdui-appbar-with-toolbar {
+      padding-top: 68px;
+      padding-bottom: 56px;
+    }
+
+    .music-list-wrapper {
+      border-bottom: 1px solid #e2e2e2;
+      padding: 2px 0 0 2px;
+    }
+
+    .music-list-wrapper:nth-child(1) {
+      border-top: 1px solid #e2e2e2;
+      padding: 2px 0 0 2px;
+    }
+
+    .mdui-list-item-content {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+
+    .music-list-item p {
+      margin: 5px;
+    }
+
+    .little-span-1 {
+      border: 1px orange solid;
+      border-radius: 3px;
+      color: orange;
+      padding: 0px 4px;
+      font-size: 11px;
+      margin-left: 7px;
+    }
+
+    .little-span-2 {
+      border: 1px #abcdef solid;
+      border-radius: 3px;
+      color: #abcdef;
+      padding: 0px 4px;
+      font-size: 11px;
+      margin-left: 7px;
+    }
+
+    .music-list-item p:nth-child(2) {
+      font-size: 12px;
+      color: #000000;
+      font-weight: 100;
+    }
+
+    .music-list-wrapper i {
+      color: #abcdef;
+      font-weight: 100;
+    }
+
+    .mdui-list-item:hover {
+      background-color: white;
+    }
+
+    .playList-active p {
+      color: #009688!important;
+    }
+
+    .playList-active::before {
+      content: "";
+      position: absolute;
+      left: 0px;
+      background-color: #009688!important;
+      width: 4px;
+      height: 40px;
+    }
+
+    .mvSpan {
+      border-radius: 5px;
+      padding: 3px 5px;
+      font-size: 12px;
+      background-color: #abcdef;
+      color: white;
+      margin-right: 11px;
+    }
+
+    @media screen and (min-width: 400px) {
+      #musicPlayer-detail {
+        width: 320px !important;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      .PrevAndNext {
+        display: none;
+      }
+    }
+
+    #fatherUl {
+      display: flex;
+      width: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .childrenLi {
+      flex: 1;
+      text-align: center;
+    }
+
+    .childrenLi i {
+      font-size: 38px;
+    }
+  </style>
+</head>
+
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-pink">
+  <header mdui-headroom="options" class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+      <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}">
+        <i class="mdui-icon material-icons">menu</i>
+      </span>
+      <span class="mdui-typo-title">无浪音乐</span>
+      <div class="mdui-toolbar-spacer"></div>
+      <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white">
+          
+        <i class="mdui-icon material-icons">&#xe5d4;</i>
+      </span>
+    </div>
+  </header>
+  <div class="mdui-container doc-container doc-no-cover" style="width:100%; padding:0;">
+    <ul id="musicListUl" class="mdui-list music-ul" style="padding:0 5px;"></ul>
+  </div>
+
+  <div id="player-wrapper" class="mdui-list" style="position:fixed;bottom:0;left:0;right:0;padding:0;background-color:white;display:none;z-index:5050;">
+    <div class="mdui-list-item" style="padding:0 10px;">
+      <div class="mdui-progress" style="position:absolute;top:0;left:0;right:0;height:3px;">
+        <div class="mdui-progress-determinate mini-progress" style="width: 0%;"></div>
+      </div> 
+      <label id="changeProgress" class="mdui-slider" style="position:absolute;top:0;left:0;right:0;height:3px;">
+        <input onchange="changeProgress()" class="mini-progress" type="range" value="0" step="1" min="0" max="100" />
+      </label>
+      <div class="mdui-list-item-avatar">
+        <img id="musicPlayer-icon" src="https://ws3.sinaimg.cn/large/006tNbRwgy1fokiycw4kdj30dw0dm0te.jpg" />
+      </div>
+      <div style="margin-left: 8px;" class="mdui-list-item-content music-list-item">
+        <p id="musicPlayer-name">无心睡眠</p>
+        <p style="width:160px" class="mdui-text-truncate" id="musicPlayer-detail">张国荣</p>
+      </div>
+      <i onclick="PrevAndNext(-1)" class="PrevAndNext mdui-ripple mdui-icon material-icons" style="color:#009688!important; font-size:38px;">&#xe045;</i>
+      <i onclick="playBtn()" id="playBtn" class="mdui-ripple mdui-icon material-icons" style="color:#009688!important; font-size:38px;">&#xe039;
+      </i>
+
+      <div id="play-spinner" style="display:none;margin:5px;" class="mdui-spinner mdui-spinner-colorful"></div>
+
+      <i onclick="PrevAndNext(+1)" class="PrevAndNext mdui-ripple mdui-icon material-icons" style="color:#009688!important; font-size:38px;">&#xe044;</i>
+      <i mdui-dialog="{target: '#music-opts'}" class="mdui-ripple mdui-icon material-icons" style="color:#009688!important; font-size:38px;margin-left:14px;">&#xe03d;</i>
+    </div>
+  </div>
+
+  <div class="mdui-dialog" id="music-opts">
+    <div class="mdui-dialog-content">
+      <div class="mdui-dialog-title">设置</div>
+      <ul id="fatherUl">
+        <li onclick="PrevAndNext(-1)" class="childrenLi mdui-ripple">
+          <i class="mdui-icon material-icons">&#xe045;</i>上一曲</li>
+        <li onclick="PrevAndNext(+1)" class="childrenLi mdui-ripple">下一曲
+          <i class="mdui-icon material-icons">&#xe044;</i>
+        </li>
+      </ul>
+      <p></p>
+      音量：
+      <label style="width:98%;" class="mdui-slider mdui-slider-discrete">
+        <input oninput="changeVolume()" id="changeVolume" value="100" type="range" step="1" min="0" max="100" />
+      </label>
+    </div>
+
+    <div class="mdui-dialog-actions">
+      <button class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
+    </div>
+  </div>
+  <div id="music-MV" style="width:96%;" class="mdui-dialog">
+    <div style="padding:3px; min-height:200px;" class="mdui-dialog-content">
+        <video style="width: 100%;" class="mdui-video-fluid"  src=""  controls="" x5-playsinline="" playsinline="" webkit-playsinline="" poster="" preload="auto" autoplay="autoplay" loop="loop" ></video>
+    </div>
+
+    <div class="mdui-dialog-actions">
+      <button class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
+    </div>
+  </div>
+
+  <div class="mdui-drawer" id="main-drawer">
+    <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+      <p style="text-align:center;">
+        <a target="_blank" href="http://wulangwang.top/" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">我的博客</a>
+      </p>
+    </div>
+  </div>
+  <audio autoplay="autoplay" controls="controls" style='display:none;'></audio>
+  <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/mdui/0.4.0/js/mdui.min.js"></script>
+  <!-- <script>var $$ = mdui.JQ;</script> -->
+  <script>
+    var json = [
+        {
+    'name': "无浪网导语", 
+    'detail': "无风不起浪@你", 
+    'link': "https://music.163.com/song/media/outer/url?id=5086081", 
+    'icon': "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=1761417627708961", 
+    'tips': ["无浪网","剪辑music"], 'mv': 'http://13469940053.github.io/video/video/wlw.mp4' 
+  }, 
+  {
+    'name': "无浪网背景音乐", 
+    'detail': "无风不起浪@你", 
+    'link': "https://music.163.com/song/media/outer/url?id=465675773", 
+    'icon': "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951165809080053", 
+    'tips': ["无浪网","剪辑music"], 
+    'mv': 'http://13469940053.github.io/video/video/wulangwang.mp4'    
+  },
+  {
+    
+      'name': 'PLANET', 'detail': 'ラムジ·3ラムジ - (3 Lambsey)',
+      'link': 'https://music.163.com/song/media/outer/url?id=812400.mp3', 'icon': 'http://p1.music.126.net/cCyPSxi-BE2h-SmpLBztbA==/18635622580993683.jpg?param=130y130',
+      'tips': ["独家"], 
+      'mv': 'http://13469940053.github.io/video/video/wulangwang.mp4' 
+    },
+
+    {
+      'name': 'Beast', 'detail': 'Vicetone / Nico Vega',
+      'link': 'https://music.163.com/song/media/outer/url?id=29910083.mp3', 'icon': 'http://p1.music.126.net/4aJgAkZtkZ7DCrn9NEwjHg==/6647647302976303.jpg?param=130y130',
+      'tips': ["独家"], 'mv': ''
+    },
+
+
+    {
+      'name': 'Heartbeat', 'detail': 'PØRPEL / Marcus & Martinus',
+      'link': 'http://music.163.com/song/media/outer/url?id=513357140.mp3', 'icon': 'http://p1.music.126.net/I_UDbIsryVrLsLfhgE85PA==/109951163044960154.jpg?param=130y130',
+      'tips': ["HQ"], 'mv': ''
+    },
+
+    {
+      'name': '阴天快乐', 'detail': '陈奕迅·rice & shine',
+      'link': 'http://music.163.com/song/media/outer/url?id=28563317.mp3', 'icon': 'http://p1.music.126.net/EES1U3UVWUdt_tHyiY8XAw==/5962651557619306.jpg?param=130y130',
+      'tips': ["SQ", "独家"], 'mv': '',
+      'lrc':'歌词'
+    },
+
+
+
+
+    {
+      'name': '无心睡眠', 'detail': '陈冠希·香港广播75年金曲银禧纪念CD',
+      'link': 'https://music.163.com/song/media/outer/url?id=5268113.mp3', 'icon': 'https://ws2.sinaimg.cn/large/006tNbRwgy1foktb36i2qj30dm0dmn2u.jpg',
+      'tips': ["SQ", "独家"], 'mv': ''
+    },
+
+
+
+
+    {
+      'name': 'Girls', 'detail': '巡音ルカ·EasyPop VOCALOID Tracks 2',
+      'link': 'http://music.163.com/song/media/outer/url?id=28606028.mp3', 'icon': 'http://p1.music.126.net/EzDE0McR2gIZwsKb99stLA==/6069304185774923.jpg?param=130y130',
+      'tips': ["HQ"], 'mv': ''
+    },
+
+
+    {
+      'name': '雪龙吟', 'detail': '张杰',
+      'link': 'http://music.163.com/song/media/outer/url?id=1914933323.mp3', 'icon': '  ',
+      'tips': ["SQ"], 'mv': 'https://fn.music.163.com/g/mlog/mlog-mobile/landing/mlog?id=a14PZ9kqTu82XPB&type=2&userid=604884741&songId=1914933323&startTime=0'
+    },
+
+    {
+      'name': '风吹一夏', 'detail': 'DP龙猪',
+      'link': 'https://music.163.com/song/media/outer/url?id=1851258433.mp3', 'icon': 'http://p1.music.126.net/OC3XXrblVQPgXrkZyLaPow==/3394192437682072.jpg?param=130y130',
+      'tips': [], 'mv': 'https://fn.music.163.com/g/mlog/mlog-mobile/landing/mv?id=14293534'
+    }]; 
+    
+    
+
+    //初始加载
+    $(function () {
+      getMusicList();
+    })
+
+    var currentIndex = 0;
+    //加载列表
+    function getMusicList() {
+      var str = ""
+      for (e in json) {
+        var tipstr = "";
+        for (k in json[e].tips) {
+          var num = +k + 1;
+          tipstr += "<span class='little-span-" + num + "'>" + json[e].tips[k] + "</span>"
+        }
+        var mvstr = "";
+        if (json[e].mv != "") {
+          mvstr = "<span class='mvSpan' onclick=\"openMV('" + json[e].mv + "')\">MV</span>";
+        }
+        str += "<li onclick=\"play('" + json[e].name + "','" + json[e].detail + "','" + json[e].link + "','" + json[e].icon + "',this)\" class='mdui-list-item mdui-ripple music-list-wrapper'>"
+          + "<div class='mdui-list-item-content music-list-item' style='margin-left:10px;'>"
+          + "<p>" + json[e].name + ""
+          + tipstr
+          + "</p>"
+          + "<p>" + json[e].detail + "</p>"
+          + "</div>"
+          + mvstr
+          + "</li>"
+      }
+      $("#musicListUl").append(str);
+    }
+
+    //MV
+    function openMV(mv) {
+      event.stopPropagation();
+      $("#playBtn").html("&#xe039;");
+      $("audio")[0].pause();
+      clearInterval(playInterval);
+      $(".mdui-video-fluid")[0].src = mv;
+      $("video")[0].ondurationchange = function () {
+        setTimeout(function () {
+          var inst = new mdui.Dialog('#music-MV');
+          inst.open();
+        }, 1200);
+      }
+
+      var dialog = document.getElementById('music-MV');
+      dialog.addEventListener('close.mdui.dialog', function () {
+        $(".mdui-video-fluid")[0].src = "";
+      });
+    }
+    //获取进度条
+    var playInterval;
+    function getDuration() {
+      $("#changeProgress").fadeIn(3800);
+      playInterval = setInterval(function () {
+        var widthDuration = $("audio")[0].currentTime / $("audio")[0].duration * 100;
+        //$(".mini-progress").css("width", widthDuration);
+        $(".mini-progress").val(widthDuration);
+        mdui.updateSliders();
+        if (widthDuration == "100") {
+          var currentIndex = getCurrentIndex() + 1;
+          if (currentIndex == $("#musicListUl li").length) {
+            currentIndex = 0;
+          }
+          $("#musicListUl li").eq(currentIndex).click();
+        }
+      }, 1000);
+    }
+
+    //快进快退
+    function changeProgress() {
+      $("#playBtn").hide();
+      $("#play-spinner").fadeIn();
+
+      $("audio")[0].currentTime = $(".mini-progress").val() / 100 * $("audio")[0].duration;
+      if ($("audio")[0].paused) {
+        playBtn();
+
+      }
+      setTimeout(function(){
+        $("#play-spinner").hide();
+        $("#playBtn").fadeIn();
+
+      },2000);
+    }
+
+    //上一首下一首
+    function PrevAndNext(e) {
+      $("#changeProgress").hide();
+      var currentIndex = getCurrentIndex() + e;
+      if (currentIndex == $("#musicListUl li").length) {
+        currentIndex = 0;
+      }
+      $("#musicListUl li").eq(currentIndex).click();
+      $("audio")[0].currentTime = 0;
+    }
+
+    //列表点击
+    function play(name, detail, link, icon, e) {
+      $("#changeProgress").hide();
+      $(".music-ul li").removeClass("playList-active");
+      $(e).addClass("playList-active");
+      if ($("audio")[0].src == link && $("audio")[0].paused) { //点击列表时若是当前歌曲 且 暂停状态 => 播放
+        playBtn();
+      } else if ($("audio")[0].src == link && !$("audio")[0].paused) { //点击列表时若是当前歌曲 且 播放状态 => return false;
+        $("#changeProgress").show();
+        return false;
+      } else {  //点击列表时若不是当前歌曲 => 切换成当前点击的歌
+        $("#play-spinner").show();
+        $("#playBtn").hide();
+        $("#musicPlayer-name").text(name);
+        $("#musicPlayer-detail").text(detail);
+        $("#musicPlayer-icon")[0].src = icon;
+
+        $("audio")[0].src = link;//路径
+        $("audio")[0].ondurationchange = function () {
+          $("#play-spinner").hide();
+          $("#playBtn").fadeIn();
+          playBtn();
+          $("#player-wrapper").slideDown(200);
+        };
+      }
+    }
+
+    //播放暂停
+    function playBtn() {
+      if ($("audio")[0].paused) {
+        // 暂停>播放
+        $("#playBtn").html("&#xe036;");
+        $("audio")[0].play();
+        if ($("audio")[0].paused) {
+          $("#playBtn").html("&#xe039;");
+        }
+        getDuration();
+      } else {
+        // 播放>暂停
+        $("#playBtn").html("&#xe039;");
+        $("audio")[0].pause();
+        clearInterval(playInterval);
+      }
+    }
+
+    //调节音量
+    function changeVolume() {
+      $("audio")[0].volume = $("#changeVolume").val() / 100;
+    }
+
+    //获取现在播放的index
+    function getCurrentIndex() {
+      return $(".playList-active").index();
+    }
+
+  </script>
+  
+     <script src="https://cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js"></script>
+ 
+  
+  
+      <script>
+        if (/mobile/i.test(window.navigator.userAgent)) {
+            new VConsole();
+        }
+    </script>
+
+<code>
+<pre>
+https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1914933323
+
+http://api.mizore.cn/meting/api.php?server=netease&type=playlist&id=2531704188
+
+
+[
+  {
+    title: "雪龙吟", 
+    author: "张杰", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1914933323", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951166978108465", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1914933323"
+  }, 
+  {
+    title: "风吹一夏", 
+    author: "DP龙猪 / Swei水 / Rays陈袁", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1851258433", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951166067538191", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1851258433"
+  }, 
+  {
+    title: "万疆", 
+    author: "李玉刚", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1840861309", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951165930285966", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1840861309"
+  }, 
+  {
+    title: "偏爱", 
+    author: "张芸京", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=5238992", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=6667438510890774", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=5238992"
+  }, 
+  {
+    title: "烟火里的尘埃", 
+    author: "华晨宇", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=29004400", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=6672936069046297", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=29004400"
+  }, 
+  {
+    title: "颜妹-Taylor Swift-Love Story(Remix-Dj Cidade)（颜妹 / 王爱笑 remix）", 
+    author: "颜妹 / 王爱笑", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1386505715", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951164335492738", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1386505715"
+  }, 
+  {
+    title: "问题少年", 
+    author: "杨胖雨 / 十七草", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1488288902", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951165400788338", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1488288902"
+  }, 
+  {
+    title: "送给未来的你", 
+    author: "阳山伟伟", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1397117780", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951164518470878", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1397117780"
+  }, 
+  {
+    title: "万有引力", 
+    author: "F*yy", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1425626819", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951164984873532", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1425626819"
+  }, 
+  {
+    title: "攀登 (抖音版）", 
+    author: "Ersen0306", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1379464077", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951164257586432", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1379464077"
+  }, 
+  {
+    title: "侧脸", 
+    author: "于果", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=534542079", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951163127272432", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=534542079"
+  }, 
+  {
+    title: "一夜成长(原味版)", 
+    author: "于文文", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=409647122", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=1377688073171859", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=409647122"
+  }, 
+  {
+    title: "EA7拥有愉快生活储存十吨热爱 (DJ版）", 
+    author: "浪子康 / 在忠 / 首席执行官小七", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1385408332", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951164308732629", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1385408332"
+  }, 
+  {
+    title: "王大毛-去年夏天（咚鼓版）（苏筱沫 remix）", 
+    author: "苏筱沫", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1340944759", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951163834239397", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1340944759"
+  }, 
+  {
+    title: "把孤独当作晚餐 (原版)", 
+    author: "刘旭阳", 
+    url: "https://api.mizore.cn/meting/api.php?server=netease&type=url&id=1381053140", 
+    pic: "https://api.mizore.cn/meting/api.php?server=netease&type=pic&id=109951164241833869", 
+    lrc: "https://api.mizore.cn/meting/api.php?server=netease&type=lrc&id=1381053140"
+  }]
+  </pre>
+  </code>
+</body>
+
+</html>
